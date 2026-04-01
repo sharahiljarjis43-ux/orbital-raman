@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orbital Raman Spectroscopy Simulator</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Courier New', monospace; background: linear-gradient(145deg, #0a0a0f, #0d1117, #0a0f1a); color: #e2e8f0; min-height: 100vh; padding: 16px; }
+.header { text-align: center; margin-bottom: 20px; }
+.header .sub { font-size: 10px; letter-spacing: 4px; color: #64748b; text-transform: uppercase; margin-bottom: 4px; }
+.header h1 { font-size: 22px; font-weight: 700; background: linear-gradient(135deg, #60a5fa, #34d399); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.header .tech { font-size: 11px; color: #64748b; margin-top: 4px; }
+.readout { display: flex; justify-content: center; gap: 32px; margin-bottom: 16px; flex-wrap: wrap; }
+.readout .item { text-align: center; }
+.readout .val { font-size: 36px; font-weight: 800; }
+.readout .lbl { font-size: 10px; color: #64748b; }
+.green { color: #22c55e; } .yellow { color: #f59e0b; } .red { color: #ef4444; } .blue { color: #60a5fa; } .purple { color: #a78bfa; }
+.card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 16px; margin-bottom: 12px; }
+.card-title { font-size: 11px; color: #64748b; margin-bottom: 8px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
+label { color: #94a3b8; font-size: 11px; display: block; margin-bottom: 2px; }
+input, select { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; padding: 6px 10px; color: #e2e8f0; font-size: 13px; width: 100%; font-family: inherit; outline: none; }
+select { cursor: pointer; }
+.tabs { display: flex; gap: 4px; margin-bottom: 12px; }
+.tab { flex: 1; padding: 8px 4px; border-radius: 6px; border: none; cursor: pointer; font-size: 11px; font-weight: 600; font-family: inherit; letter-spacing: 0.5px; background: rgba(255,255,255,0.04); color: #64748b; transition: all 0.2s; }
+.tab.active { background: rgba(59,130,246,0.2); color: #60a5fa; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th { padding: 6px 8px; color: #999; font-weight: 500; text-align: center; }
+td { padding: 8px 6px; text-align: center; font-weight: 700; border-radius: 4px; font-size: 13px; }
+.feas { background: rgba(34,197,94,0.5); color: #fff; }
+.marg { background: rgba(245,158,11,0.5); color: #000; }
+.nope { background: rgba(239,68,68,0.4); color: #fff; }
+.sq-box { margin-top: 10px; padding: 10px; border-radius: 6px; background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.15); font-size: 11px; color: #f87171; }
+canvas { width: 100%; height: auto; }
+.footer { text-align: center; padding: 12px 0 4px; font-size: 9px; color: #475569; }
+.jpl-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: end; }
+.jpl-row > div:first-child { flex: 1 1 140px; }
+.jpl-row > div:last-child { flex: 2 1 200px; }
+.jpl-input { display: flex; gap: 6px; }
+.jpl-input input { flex: 1; }
+.jpl-btn { width: auto !important; cursor: pointer; padding: 6px 14px !important; background: rgba(59,130,246,0.2) !important; border: 1px solid rgba(59,130,246,0.4) !important; color: #60a5fa !important; font-weight: 600; }
+.jpl-result { margin-top: 8px; font-size: 11px; color: #94a3b8; background: rgba(59,130,246,0.08); padding: 8px 12px; border-radius: 6px; }
+.asteroid-info { margin-top: 6px; font-size: 10px; color: #64748b; }
+</style>
+</head>
+<body>
+
+<div class="header">
+    <div class="sub">Orbital Spectroscopy Lab</div>
+    <h1>Raman Detection Simulator</h1>
+    <div class="tech">248nm DUV · Resonance-Enhanced · Pulsed Time-Gated</div>
+</div>
+
+<div class="readout">
+    <div class="item"><div class="val" id="snr-val">—</div><div class="lbl" id="snr-lbl">SNR @ 680m</div></div>
+    <div class="item"><div class="val blue" id="range-val">—</div><div class="lbl">Max Range (m)</div></div>
+    <div class="item"><div class="val purple" id="sig-val">—</div><div class="lbl">Signal γ</div></div>
+</div>
+
+<div class="card">
+    <div class="jpl-row">
+        <div>
+            <label>Target Asteroid</label>
+            <select id="asteroid" onchange="onAsteroidChange()">
+                <option value="Bennu">Bennu</option>
+                <option value="Ryugu">Ryugu</option>
+                <option value="Itokawa">Itokawa</option>
+                <option value="Eros">Eros</option>
+                <option value="Ceres">Ceres</option>
+                <option value="Psyche">Psyche</option>
+                <option value="Apophis">Apophis</option>
+                <option value="Custom">Custom</option>
+            </select>
+        </div>
+        <div>
+            <label>Or search NASA JPL database</label>
+            <div class="jpl-input">
+                <input id="jpl-query" placeholder="e.g. Phaethon, 2024 YR4..." onkeydown="if(event.key==='Enter')searchJPL()">
+                <input type="button" class="jpl-btn" value="Search" onclick="searchJPL()">
+            </div>
+        </div>
+    </div>
+    <div id="jpl-result" style="display:none" class="jpl-result"></div>
+    <div id="asteroid-info" class="asteroid-info"></div>
+</div>
+
+<div class="card">
+    <div class="card-title">Instrument & Target</div>
+    <div class="grid">
+        <div><label>Distance (m)</label><input type="number" id="distance" value="680" min="50" max="5000" step="10" oninput="update()"></div>
+        <div><label>Organic %</label><input type="number" id="organic" value="5" min="0.1" max="50" step="0.1" oninput="update()"></div>
+        <div><label>Pulse (mJ)</label><input type="number" id="pulse" value="50" min="5" max="500" step="5" oninput="update()"></div>
+        <div><label>Aperture (cm)</label><input type="number" id="aperture" value="30" min="10" max="100" step="5" oninput="update()"></div>
+        <div><label>Int. Time (s)</label><input type="number" id="inttime" value="10" min="1" max="120" step="1" oninput="update()"></div>
+        <div><label>λ (nm)</label><input type="number" id="wavelength" value="248" min="200" max="600" step="1" oninput="update()"></div>
+        <div><label>Temp (K)</label><input type="number" id="temp" value="300" min="100" max="500" step="5" oninput="update()"></div>
+        <div><label>Environment</label><input type="number" id="envfactor" value="1.0" min="0.1" max="1" step="0.05" oninput="update()"></div>
+    </div>
+</div>
+
+<div class="tabs">
+    <button class="tab active" onclick="setTab('snr',this)">SNR Curves</button>
+    <button class="tab" onclick="setTab('matrix',this)">Mission Matrix</button>
+    <button class="tab" onclick="setTab('squeeze',this)">Squeezing</button>
+</div>
+
+<div class="card" id="tab-content">
+    <div id="panel-snr">
+        <div style="font-size:12px;color:#94a3b8;margin-bottom:8px;font-weight:600" id="snr-title">SNR vs Distance</div>
+        <canvas id="snr-canvas" width="520" height="300"></canvas>
+        <div style="font-size:10px;color:#64748b;margin-top:6px">Each curve = different organic concentration. Dashed = SNR=5 threshold.</div>
+    </div>
+    <div id="panel-matrix" style="display:none">
+        <div style="font-size:12px;color:#94a3b8;margin-bottom:8px;font-weight:600">Mission Phase × Organic % Feasibility</div>
+        <table id="matrix-table"></table>
+        <div style="display:flex;gap:12px;margin-top:8px;font-size:10px">
+            <span class="green">■ SNR ≥ 5: Feasible</span>
+            <span class="yellow">■ SNR 3–5: Marginal</span>
+            <span class="red">■ SNR < 3: Not feasible</span>
+        </div>
+    </div>
+    <div id="panel-squeeze" style="display:none">
+        <div style="font-size:12px;color:#94a3b8;margin-bottom:4px;font-weight:600">Quantum Squeezing: Why It Doesn't Help</div>
+        <div style="font-size:10px;color:#64748b;margin-bottom:8px">V_eff = η · V_ideal + (1 − η) — loss injects vacuum noise</div>
+        <canvas id="squeeze-canvas" width="520" height="240"></canvas>
+        <div class="sq-box" id="squeeze-result"></div>
+    </div>
+</div>
+
+<div class="footer">
+    Photon budget model from OSIRIS-REx OVIRS/OTES data · K_R scaling: (532/λ)⁴ × resonance<br>
+    Built for orbital Raman spectroscopy feasibility assessment
+</div>
+
+<script>
+// === PHYSICS ENGINE — exact copy of src.py calculate_snr() ===
+function calculateSNR(dist, org, p) {
+    p = p || {};
+    const wl = p.wavelength || 248, pe = p.pulse || 0.050, ap = p.aperture || 0.30;
+    const ti = p.inttime || 10, tK = p.temp || 300, si = p.solar || 0.015, ef = p.env || 1.0;
+    const h = 6.626e-34, c = 3e8, rep = 20, QE = 0.30;
+    const np = rep * ti, Eph = h * c / (wl * 1e-9), ppp = pe / Eph;
+    const K0 = 1e-11, lf = Math.pow(532 / wl, 4);
+    const res = wl < 260 ? 10 : (wl < 300 ? 5 : 1);
+    const KR = K0 * (org / 1.0) * lf * res * ef;
+    const Atel = Math.PI * Math.pow(ap / 2, 2), omega = Atel / (dist * dist);
+    const spot = Math.PI * Math.pow(dist * 0.5e-3, 2);
+    const Nsig = (ppp / spot) * KR * omega * spot * np * QE;
+    const gate = np * 20e-9;
+    const Nsol = si / 1.27 * 0.5 * Atel * 0.044 * gate * QE / (h * c / 280e-9) * 0.1;
+    const Ndk = 100 * Math.exp((tK - 300) / 30) * ti;
+    const Nrd = 25 * np;
+    if (Nsig <= 0) return { snr: 0, sig: 0 };
+    return { snr: Nsig / Math.sqrt(Nsig + Nsol + Ndk + Nrd), sig: Nsig };
+}
+
+function getParams() {
+    return {
+        wavelength: +document.getElementById('wavelength').value,
+        pulse: +document.getElementById('pulse').value / 1000,
+        aperture: +document.getElementById('aperture').value / 100,
+        inttime: +document.getElementById('inttime').value,
+        temp: +document.getElementById('temp').value,
+        solar: 0.015,
+        env: +document.getElementById('envfactor').value
+    };
+}
+
+function effSqueeze(eta, dB) {
+    const Vi = Math.pow(10, -dB / 10);
+    const Ve = eta * Vi + (1 - eta);
+    return -10 * Math.log10(Ve);
+}
+
+// === ASTEROIDS ===
+const ASTEROIDS = {
+    Bennu: { temp: 300, solar: 0.015, type: "B-type carbonaceous", albedo: 0.044 },
+    Ryugu: { temp: 300, solar: 0.014, type: "Cb-type carbonaceous", albedo: 0.045 },
+    Itokawa: { temp: 330, solar: 0.020, type: "S-type siliceous", albedo: 0.53 },
+    Eros: { temp: 280, solar: 0.018, type: "S-type siliceous", albedo: 0.25 },
+    Ceres: { temp: 168, solar: 0.005, type: "C-type carbonaceous", albedo: 0.09 },
+    Psyche: { temp: 170, solar: 0.004, type: "M-type metallic", albedo: 0.15 },
+    Apophis: { temp: 310, solar: 0.020, type: "Sq-type", albedo: 0.30 },
+    Custom: { temp: 300, solar: 0.015, type: "Custom", albedo: 0.10 },
+};
+
+function onAsteroidChange() {
+    const a = ASTEROIDS[document.getElementById('asteroid').value];
+    if (a) {
+        document.getElementById('temp').value = a.temp;
+        document.getElementById('asteroid-info').textContent = a.type + ' · albedo ' + a.albedo;
+    }
+    update();
+}
+
+async function searchJPL() {
+    const q = document.getElementById('jpl-query').value.trim();
+    if (!q) return;
+    const el = document.getElementById('jpl-result');
+    el.style.display = 'block';
+    el.innerHTML = 'Searching...';
+    try {
+        const r = await fetch('https://ssd-api.jpl.nasa.gov/sbdb.api?sstr=' + encodeURIComponent(q) + '&phys-par=true');
+        const d = await r.json();
+        if (d.phys_par) {
+            const alb = d.phys_par.find(p => p.name === 'albedo');
+            const dia = d.phys_par.find(p => p.name === 'diameter');
+            el.innerHTML = '<strong style="color:#60a5fa">' + (d.object?.fullname || q) + '</strong> · albedo: ' +
+                (alb ? alb.value : '?') + ' · diameter: ' + (dia ? dia.value + ' km' : '?') +
+                ' · class: ' + (d.object?.orbit_class?.name || '?');
+            const a = parseFloat(alb?.value) || 0.1;
+            document.getElementById('temp').value = Math.round(250 + (1 - a) * 150);
+            document.getElementById('asteroid').value = 'Custom';
+            update();
+        } else {
+            el.innerHTML = '<span style="color:#f59e0b">Not found or no physical data</span>';
+        }
+    } catch (e) {
+        el.innerHTML = '<span style="color:#f59e0b">Failed to reach JPL API</span>';
+    }
+}
+
+// === TABS ===
+function setTab(id, btn) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    ['snr', 'matrix', 'squeeze'].forEach(t => {
+        document.getElementById('panel-' + t).style.display = t === id ? 'block' : 'none';
+    });
+    update();
+}
+
+// === UPDATE ===
+function update() {
+    const dist = +document.getElementById('distance').value;
+    const org = +document.getElementById('organic').value;
+    const p = getParams();
+    const r = calculateSNR(dist, org, p);
+
+    // Readout
+    const snrEl = document.getElementById('snr-val');
+    snrEl.textContent = r.snr.toFixed(1);
+    snrEl.className = 'val ' + (r.snr >= 5 ? 'green' : r.snr >= 3 ? 'yellow' : 'red');
+    document.getElementById('snr-lbl').textContent = 'SNR @ ' + dist + 'm';
+    document.getElementById('sig-val').textContent = Math.round(r.sig);
+
+    // Max range
+    let maxR = 50;
+    for (let d = 5000; d >= 50; d -= 10) {
+        if (calculateSNR(d, org, p).snr >= 5) { maxR = d; break; }
+    }
+    document.getElementById('range-val').textContent = maxR >= 5000 ? '>5k' : maxR;
+
+    drawSNR(p);
+    drawMatrix(p);
+    drawSqueeze();
+}
+
+// === DRAW SNR CURVES ===
+function drawSNR(p) {
+    const cv = document.getElementById('snr-canvas');
+    const ctx = cv.getContext('2d');
+    const W = cv.width, H = cv.height;
+    const pad = { t: 30, r: 20, b: 40, l: 55 };
+    const w = W - pad.l - pad.r, h = H - pad.t - pad.b;
+    ctx.clearRect(0, 0, W, H);
+
+    // Background
+    ctx.fillStyle = 'rgba(255,255,255,0.02)';
+    ctx.fillRect(pad.l, pad.t, w, h);
+
+    const maxSNR = 100;
+    const toX = d => pad.l + (d - 50) / (2000 - 50) * w;
+    const toY = s => pad.t + h - Math.min(s, maxSNR) / maxSNR * h;
+
+    // SNR=5 line
+    ctx.strokeStyle = '#888'; ctx.lineWidth = 1.5; ctx.setLineDash([6, 4]);
+    ctx.beginPath(); ctx.moveTo(pad.l, toY(5)); ctx.lineTo(pad.l + w, toY(5)); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#888'; ctx.font = '10px Courier New';
+    ctx.textAlign = 'right'; ctx.fillText('SNR=5', pad.l + w - 4, toY(5) - 5);
+
+    // Curves
+    const orgs = [1, 3, 5, 10];
+    const colors = ['#ef4444', '#f59e0b', '#22c55e', '#06b6d4'];
+    orgs.forEach((org, idx) => {
+        ctx.strokeStyle = colors[idx]; ctx.lineWidth = 2;
+        ctx.beginPath();
+        for (let d = 50; d <= 2000; d += 25) {
+            const s = calculateSNR(d, org, p).snr;
+            const x = toX(d), y = toY(s);
+            d === 50 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+    });
+
+    // Axes
+    ctx.strokeStyle = '#666'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(pad.l, pad.t + h); ctx.lineTo(pad.l + w, pad.t + h); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(pad.l, pad.t); ctx.lineTo(pad.l, pad.t + h); ctx.stroke();
+
+    ctx.fillStyle = '#666'; ctx.font = '10px Courier New'; ctx.textAlign = 'center';
+    [0, 500, 1000, 1500, 2000].forEach(d => ctx.fillText(d, toX(d), pad.t + h + 16));
+    ctx.textAlign = 'right';
+    [0, 20, 40, 60, 80, 100].forEach(s => ctx.fillText(s, pad.l - 8, toY(s) + 4));
+
+    ctx.fillStyle = '#999'; ctx.font = '11px Courier New'; ctx.textAlign = 'center';
+    ctx.fillText('Distance (m)', pad.l + w / 2, H - 4);
+
+    // Legend
+    ctx.textAlign = 'left';
+    orgs.forEach((org, i) => {
+        const y = pad.t + 10 + i * 16;
+        ctx.strokeStyle = colors[i]; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(pad.l + 8, y); ctx.lineTo(pad.l + 22, y); ctx.stroke();
+        ctx.fillStyle = '#ccc'; ctx.font = '10px Courier New';
+        ctx.fillText(org + '%', pad.l + 26, y + 4);
+    });
+
+    document.getElementById('snr-title').textContent = 'SNR vs Distance — ' +
+        document.getElementById('asteroid').value + ' at ' + p.wavelength + 'nm';
+}
+
+// === DRAW MATRIX ===
+function drawMatrix(p) {
+    const phases = [
+        { name: 'Sample Collection', dist: 50 },
+        { name: 'Recon', dist: 375 },
+        { name: 'Orbital B', dist: 680 },
+        { name: 'Survey', dist: 750 },
+        { name: 'Orbital A', dist: 1600 },
+    ];
+    const orgs = [10, 5, 3, 1];
+    let html = '<tr><th>Organic %</th>';
+    phases.forEach(ph => html += '<th>' + ph.name + '<br><span style="font-size:9px;color:#666">' + ph.dist + 'm</span></th>');
+    html += '</tr>';
+    orgs.forEach(org => {
+        html += '<tr><td style="color:#ccc;font-weight:600">' + org + '%</td>';
+        phases.forEach(ph => {
+            const s = calculateSNR(ph.dist, org, p).snr;
+            const cls = s >= 5 ? 'feas' : s >= 3 ? 'marg' : 'nope';
+            html += '<td class="' + cls + '">' + (s < 0.1 ? '<0.1' : s.toFixed(1)) + '</td>';
+        });
+        html += '</tr>';
+    });
+    document.getElementById('matrix-table').innerHTML = html;
+}
+
+// === DRAW SQUEEZE ===
+function drawSqueeze() {
+    const cv = document.getElementById('squeeze-canvas');
+    const ctx = cv.getContext('2d');
+    const W = cv.width, H = cv.height;
+    const pad = { t: 25, r: 15, b: 35, l: 50 };
+    const w = W - pad.l - pad.r, h = H - pad.t - pad.b;
+    ctx.clearRect(0, 0, W, H);
+
+    const toX = e => pad.l + (e - 0.01) / 0.79 * w;
+    const toY = d => pad.t + h - d / 10 * h;
+
+    // Curves
+    const dBs = [3, 6, 10];
+    const colors = ['#3b82f6', '#f59e0b', '#22c55e'];
+    dBs.forEach((dB, idx) => {
+        ctx.strokeStyle = colors[idx]; ctx.lineWidth = 2;
+        ctx.beginPath();
+        for (let e = 0.01; e <= 0.80; e += 0.01) {
+            const x = toX(e), y = toY(effSqueeze(e, dB));
+            e <= 0.02 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+    });
+
+    // Reference lines
+    ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 1.5; ctx.setLineDash([4, 3]);
+    ctx.beginPath(); ctx.moveTo(toX(0.045), pad.t); ctx.lineTo(toX(0.045), pad.t + h); ctx.stroke();
+    ctx.strokeStyle = '#22c55e';
+    ctx.beginPath(); ctx.moveTo(toX(0.30), pad.t); ctx.lineTo(toX(0.30), pad.t + h); ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.fillStyle = '#ef4444'; ctx.font = '9px Courier New'; ctx.textAlign = 'left';
+    ctx.fillText('4.5%', toX(0.045) + 3, pad.t + 12);
+    ctx.fillStyle = '#22c55e';
+    ctx.fillText('30%', toX(0.30) + 3, pad.t + 12);
+
+    // Axes
+    ctx.strokeStyle = '#666'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(pad.l, pad.t + h); ctx.lineTo(pad.l + w, pad.t + h); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(pad.l, pad.t); ctx.lineTo(pad.l, pad.t + h); ctx.stroke();
+
+    ctx.fillStyle = '#666'; ctx.font = '9px Courier New'; ctx.textAlign = 'center';
+    [0, 20, 40, 60, 80].forEach(p => ctx.fillText(p, toX(p / 100), pad.t + h + 14));
+    ctx.fillStyle = '#888'; ctx.font = '10px Courier New';
+    ctx.fillText('Total Optical Efficiency η (%)', pad.l + w / 2, H - 4);
+
+    // Legend
+    ctx.textAlign = 'left';
+    dBs.forEach((dB, i) => {
+        const x = pad.l + w - 90, y = pad.t + 8 + i * 14;
+        ctx.strokeStyle = colors[i]; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + 12, y); ctx.stroke();
+        ctx.fillStyle = '#bbb'; ctx.font = '9px Courier New';
+        ctx.fillText(dB + ' dB ideal', x + 16, y + 3);
+    });
+
+    // Result box
+    const eff = effSqueeze(0.045, 10);
+    document.getElementById('squeeze-result').innerHTML =
+        'At 4.5% optical efficiency, 10 dB ideal squeezing yields only <strong>' +
+        eff.toFixed(2) + ' dB</strong> effective — negligible. Need η > 30% for squeezing to matter.';
+}
+
+// Init
+onAsteroidChange();
+update();
+</script>
+</body>
+</html>
