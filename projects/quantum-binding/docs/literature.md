@@ -1,0 +1,9 @@
+# Literature context and priority
+
+This is a focused model study, not a claim to have invented higher-order hidden-process analysis. Establishing the priority of its precise model-specific bounds requires a broader review.
+
+- Fredkin and Rice, *Correlation Functions of a Function of a Finite-State Markov Process With Application to Channel Kinetics* (1987), [DOI](https://doi.org/10.1016/0025-5564(87)90072-1). The October 22 source review inspected the full text and superseded an earlier access-only note. Its higher-moment closure theorem has visibility and spectral assumptions; hidden-mode examples should not be described as counterexamples to that theorem. The exact match between the model-specific threshold here and broader classical results remains unresolved.
+- Witkoskie and Cao, *Single molecule kinetics. I. Theoretical analysis of indicators* (2004), [author-hosted paper](https://web.mit.edu/jianshucaogroup/pdfdir/2004/JChemPhys_121_6361.pdf), [DOI](https://doi.org/10.1063/1.1785783). This paper analyzes information in correlations and characteristic functions, the nonuniqueness of kinetic schemes, and practical limits of extracting that information.
+- Sontag, Wang, and Megretski, *Input Classes for Identifiability of Bilinear Systems* (2009), [author-hosted paper](https://www.sontaglab.org/FTPDIR/sontag_wang_megretski_inputs_tac_54_195_207.pdf), [DOI](https://doi.org/10.1109/TAC.2008.2006927). Its control-class and realization framework is relevant background for a future controlled-coherence identification analysis; a generic realization result does not itself solve the finite noisy library used here.
+
+The first comparison above is reported from the retained source review, not a fresh full-text review in this curation. The other two author-hosted sources were accessible during curation. No article files or substantial article text are redistributed.

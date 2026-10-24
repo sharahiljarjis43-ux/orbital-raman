@@ -1,0 +1,1 @@
+# Python >= 3.10. All checks and SVG generation use the standard library.

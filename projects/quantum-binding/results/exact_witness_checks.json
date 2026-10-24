@@ -1,0 +1,287 @@
+{
+  "status": "All checks passed with exact rational arithmetic",
+  "scope": "Fixed pair separation only; no global identification, finite-shot performance, physical tau result, or novelty claim",
+  "parameters": {
+    "a": "1",
+    "d": "1",
+    "state_order": [
+      "B1",
+      "B2",
+      "B3",
+      "U1",
+      "U2",
+      "U3"
+    ],
+    "c": [
+      "-1",
+      "-2",
+      "3"
+    ],
+    "w": [
+      "5",
+      "-4",
+      "-1"
+    ]
+  },
+  "E": [
+    [
+      "-21/20",
+      "1",
+      "1/20"
+    ],
+    [
+      "1",
+      "-2",
+      "1"
+    ],
+    [
+      "1/20",
+      "1",
+      "-21/20"
+    ]
+  ],
+  "R": [
+    [
+      "-4/21",
+      "20/21",
+      "5/21"
+    ],
+    [
+      "20/21",
+      "5/21",
+      "-4/21"
+    ],
+    [
+      "5/21",
+      "-4/21",
+      "20/21"
+    ]
+  ],
+  "E_alias": [
+    [
+      "-1789/980",
+      "131/245",
+      "253/196"
+    ],
+    [
+      "131/245",
+      "-186/245",
+      "11/49"
+    ],
+    [
+      "253/196",
+      "11/49",
+      "-297/196"
+    ]
+  ],
+  "stationary_distribution": [
+    "1/6",
+    "1/6",
+    "1/6",
+    "1/6",
+    "1/6",
+    "1/6"
+  ],
+  "checks": {
+    "R_orthogonal": true,
+    "R_fixes_ones": true,
+    "R_fixes_c": true,
+    "Q_alias_is_S_Q_S_transpose": true,
+    "Q_row_sums_zero": true,
+    "Q_alias_row_sums_zero": true,
+    "pi_stationary": true,
+    "pi_alias_stationary": true,
+    "Q_symmetric_detailed_balance": true,
+    "Q_alias_symmetric_detailed_balance": true,
+    "S_fixes_f": true,
+    "left_covector_fixes_S": true,
+    "mean_detuning_zero": true,
+    "E_positive_off_diagonal": true,
+    "E_alias_positive_off_diagonal": true,
+    "derivative_differences_zero_through_order_5": true,
+    "sixth_derivative_difference_exact": true,
+    "third_order_encounter_contrast_exact": true,
+    "sixth_coefficient_equals_two_covector_words": true,
+    "factorial_and_T6_coefficient_exact": true,
+    "return_alias_is_R_P_R_transpose": true,
+    "partner_2_return_differs": true,
+    "mean_same_partner_return_invariant": true
+  },
+  "derivative_polynomials_base_in_z": [
+    [
+      "1"
+    ],
+    [
+      "0",
+      "0"
+    ],
+    [
+      "0",
+      "0",
+      "7/3"
+    ],
+    [
+      "0",
+      "0",
+      "-7/3",
+      "3"
+    ],
+    [
+      "0",
+      "0",
+      "14/3",
+      "-6",
+      "49/3"
+    ],
+    [
+      "0",
+      "0",
+      "-69/5",
+      "15",
+      "-49",
+      "35"
+    ],
+    [
+      "0",
+      "0",
+      "3536/75",
+      "-658/15",
+      "147",
+      "-140",
+      "397/3"
+    ]
+  ],
+  "derivative_polynomials_alias_in_z": [
+    [
+      "1"
+    ],
+    [
+      "0",
+      "0"
+    ],
+    [
+      "0",
+      "0",
+      "7/3"
+    ],
+    [
+      "0",
+      "0",
+      "-7/3",
+      "3"
+    ],
+    [
+      "0",
+      "0",
+      "14/3",
+      "-6",
+      "49/3"
+    ],
+    [
+      "0",
+      "0",
+      "-69/5",
+      "15",
+      "-49",
+      "35"
+    ],
+    [
+      "0",
+      "0",
+      "3536/75",
+      "-5366/105",
+      "147",
+      "-140",
+      "397/3"
+    ]
+  ],
+  "derivative_polynomials_alias_minus_base_in_z": [
+    [
+      "0"
+    ],
+    [
+      "0",
+      "0"
+    ],
+    [
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "0",
+      "0",
+      "0",
+      "-152/21",
+      "0",
+      "0",
+      "0"
+    ]
+  ],
+  "c_squared_E_c_base": "-118/5",
+  "c_squared_E_c_alias": "-1586/35",
+  "c_squared_E_c_difference": "-152/7",
+  "T6_coefficient_of_z3_alias_minus_base": "-19/1890",
+  "substitution": "z=-i*g; z^3=+i*g^3, so delta W(T)=-(19/1890)*i*g^3*T^6+O(T^7) for fixed real g",
+  "at_g_one_half": {
+    "sixth_derivative_delta_W": "-(19/21)*i",
+    "T6_coefficient_delta_W": "-(19/15120)*i"
+  },
+  "return_matrix_base": [
+    [
+      "103/168",
+      "1/4",
+      "23/168"
+    ],
+    [
+      "1/4",
+      "1/2",
+      "1/4"
+    ],
+    [
+      "23/168",
+      "1/4",
+      "103/168"
+    ]
+  ],
+  "return_matrix_alias": [
+    [
+      "1429/2744",
+      "267/1372",
+      "781/2744"
+    ],
+    [
+      "267/1372",
+      "1333/2058",
+      "649/4116"
+    ],
+    [
+      "781/2744",
+      "649/4116",
+      "4591/8232"
+    ]
+  ],
+  "P22_alias_minus_base": "152/1029",
+  "mean_same_partner_return": "145/252"
+}

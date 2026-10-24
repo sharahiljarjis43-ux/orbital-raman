@@ -1,63 +1,53 @@
-# Orbital Deep-UV Raman Spectroscopy for Asteroid Organic Detection
+# Orbital Raman: instrument and observing feasibility
 
-Can you detect organics on an asteroid from orbit using Raman spectroscopy? This project tries to answer that quantitatively.
+A research software project exploring the photon budget and spatial sampling requirements for Raman spectroscopy of carbonaceous asteroid surfaces, with Bennu as the motivating case.
 
-## What this is
+**Other current projects:** [research portfolio](RESEARCH_PORTFOLIO.md).
 
-A photon budget model for 248nm deep-UV resonance-enhanced Raman spectroscopy at asteroid Bennu, calibrated with actual OSIRIS-REx flight data (OVIRS organic maps + OTES thermal measurements). The model evaluates detection feasibility across all OSIRIS-REx mission phase distances (50m to 1600m) and includes Monte Carlo uncertainty propagation, a quantum squeezing analysis, and a g⁽²⁾ photon correlation pathway.
+The repository combines a time-gated Raman count model, uncertainty studies, and simulations of how pointing placement changes target interception. It is a **simulation and methods study**. Its outputs are conditional on the optical, material and surface assumptions supplied to the model.
 
-## What I found
+## Start here
 
-- Detection works at close range. SNR ≈ 11 at 375m (Reconnaissance), SNR > 500 at 50m (Sample Collection). At 680m (Orbital B) it's marginal — SNR ≈ 3.4 for 5% organics.
-- 248nm DUV excitation gives ~200× enhancement over 532nm visible Raman through combined ν⁴ scaling and resonance enhancement of aromatic organics. Also eliminates fluorescence interference entirely.
-- Organic concentration dominates everything. Monte Carlo sensitivity analysis (10,000 trials) gives Spearman ρ = 0.79 — knowing what's on the surface matters more than any instrument improvement.
-- Quantum squeezing doesn't help. At the ~4.5% total optical efficiency of a space instrument, 10 dB of ideal squeezing yields 0.18 dB effective. You need η > 30% for it to matter at all. Verified analytically and with QuTiP.
-- g⁽²⁾ photon correlation is theoretically interesting but needs ~10⁷ hours at 680m. Future tech, not current.
+- [Quick start and reproduction](docs/REPRODUCING.md): installation, a data-free example, tests, and optional mission-data workflows.
+- [Methods and limitations](docs/METHODS_AND_LIMITATIONS.md): what the calculations mean and the assumptions that need validation.
+- [Source and data provenance](docs/PROVENANCE.md): release source, included material, exclusions and AI assistance.
 
-## Running it
-
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python scripts/smoke_check.py
+python -m pytest -q
 ```
-pip install numpy matplotlib scipy qutip netCDF4
-python src.py
-```
 
-Generates 8 figures into `Outputs/figures/`:
-- `fig1` – Feasibility contour map (distance × organic concentration)
-- `fig2` – Organic detection threshold at three instrument configs
-- `fig3` – Quantum squeezing threshold
-- `fig4` – Mission phase feasibility matrix
-- `fig5` – Bennu realistic environment (6-panel, uses OVIRS data)
-- `fig6` – Monte Carlo UQ (4-panel: SNR distribution, detection range, sensitivity, signal vs background)
-- `fig7` – Squeezing analysis (effective dB vs efficiency + SNR improvement)
-- `fig8` – g⁽²⁾ correlation (source signatures, mixed signal, integration time)
+The smoke check runs without mission or laboratory data. Tests that need external data or previously generated artifacts skip when those inputs are absent. The dependency versions record the environment used for this release's checks; see [reproduction notes](docs/REPRODUCING.md) for the verification scope.
 
-## Data
+## What is included
 
-The `Data/` folder expects three files from NASA PDS and LASP:
-- OVIRS organic band area map (`.fits`, ~19 MB, 786,432 spectral records)
-- OTES thermal emission temperatures (`.hdf5`)
-- TSIS-1 solar spectral irradiance (`.nc`)
+| Component | Entry point | Purpose |
+| --- | --- | --- |
+| Photon budget | `src_fixed.py` | Signal, reflected-solar background, detector noise, environmental assumptions and sensitivity calculations |
+| Minimal example | `scripts/smoke_check.py` | Print a count budget and check basic numerical behavior using explicit scenario inputs |
+| OVIRS scenario analysis | `main.py` | Parse a specified Bennu band-area product, apply the historical proxy model, and run Monte Carlo scenarios |
+| Pointing campaign | `pointing_main.py` | Spatial correlation, clustering-aware prevalence uncertainty and campaign simulations from generated facet classifications |
+| Coherence calculations | `g1_main.py` | Compare simplified first- and second-order photon-correlation scenarios |
+| Optional shape analysis | `analysis/occlusion_raytrace.py` | Investigate line-of-sight occlusion with externally supplied Bennu meshes |
 
-If the data files aren't present, the model falls back to synthetic distributions.
+The current source incorporates the later local work on active-illumination geometry, reflected-solar collection geometry, pointing campaigns, and explicit Raman-coefficient sensitivity. The original scientific behavior is retained so the calculations can be inspected and compared with their history.
 
-## Web simulator
+## How to interpret the results
 
-`simulator.html` — open it in any browser. No setup, no dependencies. Includes live SNR calculation, mission phase matrix, squeezing analysis, and NASA JPL asteroid database search.
+- **Detection is a model output.** An SNR above a selected threshold does not demonstrate flight readiness or measured detection at Bennu.
+- **A band-area score is not an organic-abundance measurement.** The historical `wt_c_pct`, `organic` and `carbonate` names in the OVIRS pipeline are retained for compatibility. They denote a scenario proxy and threshold labels; the integrated infrared band does not uniquely identify those chemical classes.
+- **Spatial sampling and photon collection are separate questions.** A detectable spectrum is useful only if the beam samples the relevant material. Campaign simulations currently use proxy-defined targets and require comparison with independently supported labels and cost-matched targeting policies.
+- **Laboratory and deep-UV validation remain separate.** Existing visible Raman work motivates follow-up, but it does not measure the assumed deep-UV gain, photodamage limits or orbital performance. Unpublished laboratory inputs and third-party laboratory pipelines are not bundled.
 
-## Background
+See [methods and limitations](docs/METHODS_AND_LIMITATIONS.md) before using generated tables or prose in a report. Several historical writers emit manuscript-style text with stronger chemical interpretations than the evidence supports; those outputs are reproducibility artifacts and require scientific revision.
 
-Started this in November 2025 after self-studying quantum optics through Saleh & Teich's *Fundamentals of Photonics* and Susskind's *Theoretical Minimum*. The question of whether Raman could work from orbit seemed like it should have a quantitative answer, and the OSIRIS-REx dataset made it possible to calibrate against real measurements instead of assumptions.
+## Project status
 
-## Structure
+The instrument and mission model is available for inspection and self-contained numerical checks. Full OVIRS reproduction requires the identified external product. The next research step is to test target-selection stability and the incremental value of Raman against published full-spectrum infrared baselines, followed by matched laboratory measurements with complete acquisition metadata.
 
-```
-├── src.py                  # Everything — model, figures, MC, squeezing, g²
-├── simulator.html          # Standalone web simulator
-├── Data/                   # OVIRS, OTES, TSIS-1 flight data
-├── Outputs/
-│   ├── figures/            # All 8 figure outputs
-│   └── results/            # Coverage CSVs
-└── paper/
-    ├── paper_final.md      # Manuscript draft
-    └── paper_final.docx    # Formatted version
-```
+Earlier figures, manuscript drafts and interactive demos are retained in `archive/2026-04/` for history. They are not current validated results. Some previously published mission files remain under `Data/`; see its provenance notes before use.
+
+No software license is asserted by this packaging update. Third-party data and software retain their own terms; see [provenance](docs/PROVENANCE.md).

@@ -1,0 +1,154 @@
+{
+  "status": "passed",
+  "python": "3.10.5",
+  "numpy": "2.2.6",
+  "critical_line_errors": {
+    "square_q1": 0.0,
+    "triangular_q1": 5.551115123125783e-17,
+    "square_q2": 2.220446049250313e-16,
+    "triangular_q2": -5.551115123125783e-17
+  },
+  "small_K_quadrature_minus_truncated_series": {
+    "square_K0.05": 1.7578505318027737e-10,
+    "triangular_K0.05": 2.059330678316762e-06
+  },
+  "tensor_charge_checks": 6,
+  "square_two_step_dual_minus_finite_difference": -2.5119184510202786e-11,
+  "full_convergence_or_historical_campaign_reproduced": false,
+  "saved_log_audit": {
+    "square_analytical_reference": 0.09807621135331601,
+    "square_D48_error_from_printed_log": 1.3188646683981453e-05,
+    "triangular_D32_to_D48_change_from_printed_log": -5.619999999999237e-05,
+    "triangular_converged_error_bar_established": false,
+    "saved_ladders": {
+      "log_cl_sq_0.05.txt": [
+        {
+          "D": 8,
+          "f_at_q1": -0.002559,
+          "kappa3": 0.0981807,
+          "kappa5": 0.0984045
+        },
+        {
+          "D": 16,
+          "f_at_q1": -0.0004607,
+          "kappa3": 0.0978837,
+          "kappa5": 0.0981077
+        },
+        {
+          "D": 24,
+          "f_at_q1": -0.0002249,
+          "kappa3": 0.0978418,
+          "kappa5": 0.0980657
+        },
+        {
+          "D": 32,
+          "f_at_q1": -0.0001513,
+          "kappa3": 0.0978534,
+          "kappa5": 0.0980763
+        },
+        {
+          "D": 48,
+          "f_at_q1": -9.961e-05,
+          "kappa3": 0.0978616,
+          "kappa5": 0.0980894
+        }
+      ],
+      "log_cl_sq_0.1.txt": [
+        {
+          "D": 8,
+          "f_at_q1": -0.002559,
+          "kappa3": 0.0975094,
+          "kappa5": 0.098421
+        },
+        {
+          "D": 16,
+          "f_at_q1": -0.0004607,
+          "kappa3": 0.0972119,
+          "kappa5": 0.0981241
+        },
+        {
+          "D": 24,
+          "f_at_q1": -0.0002249,
+          "kappa3": 0.0971699,
+          "kappa5": 0.0980822
+        },
+        {
+          "D": 32,
+          "f_at_q1": -0.0001513,
+          "kappa3": 0.0971846,
+          "kappa5": 0.0980962
+        },
+        {
+          "D": 48,
+          "f_at_q1": -9.961e-05,
+          "kappa3": 0.0971783,
+          "kappa5": 0.0980901
+        }
+      ],
+      "log_cl_tri_0.05.txt": [
+        {
+          "D": 8,
+          "f_at_q1": -0.0005871,
+          "kappa3": 0.1121202,
+          "kappa5": 0.1123236
+        },
+        {
+          "D": 16,
+          "f_at_q1": -0.0004139,
+          "kappa3": 0.111384,
+          "kappa5": 0.1115579
+        },
+        {
+          "D": 24,
+          "f_at_q1": -0.0001047,
+          "kappa3": 0.1116385,
+          "kappa5": 0.1118422
+        },
+        {
+          "D": 32,
+          "f_at_q1": -0.0001346,
+          "kappa3": 0.1117022,
+          "kappa5": 0.1119052
+        },
+        {
+          "D": 48,
+          "f_at_q1": -0.0001641,
+          "kappa3": 0.1116452,
+          "kappa5": 0.111849
+        }
+      ],
+      "log_cl_tri_0.1.txt": [
+        {
+          "D": 8,
+          "f_at_q1": -0.0005871,
+          "kappa3": 0.11151,
+          "kappa5": 0.1123383
+        },
+        {
+          "D": 16,
+          "f_at_q1": -0.0004139,
+          "kappa3": 0.1108623,
+          "kappa5": 0.1116767
+        },
+        {
+          "D": 24,
+          "f_at_q1": -0.0001047,
+          "kappa3": 0.1110276,
+          "kappa5": 0.1118568
+        },
+        {
+          "D": 32,
+          "f_at_q1": -0.0001346,
+          "kappa3": 0.1110932,
+          "kappa5": 0.1119453
+        },
+        {
+          "D": 48,
+          "f_at_q1": -0.0001641,
+          "kappa3": 0.1110337,
+          "kappa5": 0.1118637
+        }
+      ]
+    }
+  }
+}

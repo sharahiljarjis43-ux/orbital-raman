@@ -1,0 +1,83 @@
+{
+  "patterns_partitioned": 20,
+  "rotation_orbit_sizes": [
+    6,
+    6,
+    6,
+    2
+  ],
+  "classified_families": 15,
+  "verified_witnesses": 7,
+  "negative_families": 8,
+  "negative_cases_basis": "Analytical all-size proof; not established by this checker.",
+  "global_minimum_sizes_claimed": false,
+  "checks": {
+    "AB": {
+      "mask": 3,
+      "particles": 12,
+      "bonds": 18,
+      "nearest_neighbour_contacts": 24,
+      "connected": true,
+      "all_patches_reciprocal": true,
+      "deficit": 0
+    },
+    "AC": {
+      "mask": 5,
+      "particles": 12,
+      "bonds": 18,
+      "nearest_neighbour_contacts": 24,
+      "connected": true,
+      "all_patches_reciprocal": true,
+      "deficit": 0
+    },
+    "AD": {
+      "mask": 9,
+      "particles": 16,
+      "bonds": 24,
+      "nearest_neighbour_contacts": 33,
+      "connected": true,
+      "all_patches_reciprocal": true,
+      "deficit": 0
+    },
+    "ABC": {
+      "mask": 7,
+      "particles": 12,
+      "bonds": 18,
+      "nearest_neighbour_contacts": 24,
+      "connected": true,
+      "all_patches_reciprocal": true,
+      "deficit": 0
+    },
+    "ABD": {
+      "mask": 11,
+      "particles": 12,
+      "bonds": 18,
+      "nearest_neighbour_contacts": 24,
+      "connected": true,
+      "all_patches_reciprocal": true,
+      "deficit": 0
+    },
+    "ACD": {
+      "mask": 13,
+      "particles": 12,
+      "bonds": 18,
+      "nearest_neighbour_contacts": 24,
+      "connected": true,
+      "all_patches_reciprocal": true,
+      "deficit": 0
+    },
+    "ABCD": {
+      "mask": 15,
+      "particles": 12,
+      "bonds": 18,
+      "nearest_neighbour_contacts": 24,
+      "connected": true,
+      "all_patches_reciprocal": true,
+      "deficit": 0
+    }
+  },
+  "input_sha256": {
+    "families.json": "1429f7f340148444319006b2d6b70b21ebf03b87bb9a0392964f555d3e82659d",
+    "witnesses.json": "89091952e6b3259acad06ea2a1050eb2670151fa7d680d5b308864304f14216a"
+  }
+}

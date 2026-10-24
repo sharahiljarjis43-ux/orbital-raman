@@ -1,0 +1,193 @@
+{
+  "scope": "Stationary exact moments; calibrated distinct couplings; reversible homogeneous-rate binding model. No finite-shot or quantum-control inversion is tested.",
+  "python": "3.10.5",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "examples": [
+    {
+      "n": 2,
+      "couplings": [
+        1.0,
+        -1.0
+      ],
+      "hidden_vector": [
+        -0.7071067811865475,
+        0.7071067811865476
+      ],
+      "parameters": {
+        "a": 0.8,
+        "d": 1.1,
+        "lambda": 1.3,
+        "delta": 0.2
+      },
+      "maximum_vandermonde_orthogonality_error": 1.1102230246251565e-16,
+      "minimum_offdiagonal_rate": 0.55,
+      "subthreshold_maximum_order": 1,
+      "subthreshold_moments_checked": 2,
+      "maximum_subthreshold_moment_difference": 0.0,
+      "first_distinguishing_mixed_moment_order": 2,
+      "threshold_moment_difference": 0.002434177520945352,
+      "maximum_return_probability_change": 0.02005012531328343,
+      "P22_before": 0.6904761904761905,
+      "P22_after": 0.7105263157894737,
+      "rank_one_return_change_formula_error": 2.255140518769849e-16,
+      "bound_transition_reconstruction_error": 8.673617379884035e-17,
+      "encounter_generator_reconstruction_error": 3.3306690738754696e-16,
+      "direct_integrated_moment_P_reconstruction_error": 1.1102230246251565e-16,
+      "a_reconstruction_error": 1.1102230246251565e-16,
+      "d_reconstruction_error": 0.0
+    },
+    {
+      "n": 3,
+      "couplings": [
+        -0.3333333333333333,
+        -0.6666666666666666,
+        1.0
+      ],
+      "hidden_vector": [
+        -0.7715167498104595,
+        0.6172133998483676,
+        0.15430334996209202
+      ],
+      "parameters": {
+        "a": 0.8,
+        "d": 1.1,
+        "lambda": 1.3,
+        "delta": 0.2
+      },
+      "maximum_vandermonde_orthogonality_error": 1.942890293094024e-16,
+      "minimum_offdiagonal_rate": 0.3380952380952381,
+      "subthreshold_maximum_order": 3,
+      "subthreshold_moments_checked": 8,
+      "maximum_subthreshold_moment_difference": 1.3877787807814457e-17,
+      "first_distinguishing_mixed_moment_order": 4,
+      "threshold_moment_difference": 9.54018232783016e-05,
+      "maximum_return_probability_change": 0.02386919680152766,
+      "P22_before": 0.5873015873015873,
+      "P22_after": 0.602577873254565,
+      "rank_one_return_change_formula_error": 7.45931094670027e-17,
+      "bound_transition_reconstruction_error": 1.4432899320127035e-15,
+      "encounter_generator_reconstruction_error": 8.493206138382448e-15,
+      "direct_integrated_moment_P_reconstruction_error": 8.049116928532385e-16,
+      "a_reconstruction_error": 1.1102230246251565e-16,
+      "d_reconstruction_error": 2.220446049250313e-16
+    },
+    {
+      "n": 4,
+      "couplings": [
+        -1.0,
+        -0.3333333333333333,
+        0.3333333333333333,
+        1.0
+      ],
+      "hidden_vector": [
+        -0.223606797749979,
+        0.6708203932499369,
+        -0.6708203932499369,
+        0.22360679774997896
+      ],
+      "parameters": {
+        "a": 0.8,
+        "d": 1.1,
+        "lambda": 1.3,
+        "delta": 0.2
+      },
+      "maximum_vandermonde_orthogonality_error": 1.1102230246251565e-16,
+      "minimum_offdiagonal_rate": 0.235,
+      "subthreshold_maximum_order": 5,
+      "subthreshold_moments_checked": 26,
+      "maximum_subthreshold_moment_difference": 2.7755575615628914e-17,
+      "first_distinguishing_mixed_moment_order": 6,
+      "threshold_moment_difference": 9.616503786451236e-05,
+      "maximum_return_probability_change": 0.018045112781954975,
+      "P22_before": 0.5357142857142858,
+      "P22_after": 0.5537593984962407,
+      "rank_one_return_change_formula_error": 1.3270634591222574e-16,
+      "bound_transition_reconstruction_error": 5.898059818321144e-16,
+      "encounter_generator_reconstruction_error": 1.0824674490095276e-14,
+      "direct_integrated_moment_P_reconstruction_error": 2.4980018054066022e-15,
+      "a_reconstruction_error": 1.1102230246251565e-16,
+      "d_reconstruction_error": 0.0
+    },
+    {
+      "n": 5,
+      "couplings": [
+        -1.0,
+        -0.5,
+        -0.25,
+        0.75,
+        1.0
+      ],
+      "hidden_vector": [
+        -0.11831213107007527,
+        0.6625479339924211,
+        -0.6625479339924214,
+        0.28394911456818134,
+        -0.16563698349810563
+      ],
+      "parameters": {
+        "a": 0.8,
+        "d": 1.1,
+        "lambda": 1.3,
+        "delta": 0.2
+      },
+      "maximum_vandermonde_orthogonality_error": 4.440892098500626e-16,
+      "minimum_offdiagonal_rate": 0.17220604703247483,
+      "subthreshold_maximum_order": 7,
+      "subthreshold_moments_checked": 64,
+      "maximum_subthreshold_moment_difference": 4.163336342344337e-17,
+      "first_distinguishing_mixed_moment_order": 8,
+      "threshold_moment_difference": 1.1739224860168873e-05,
+      "maximum_return_probability_change": 0.01760279758747385,
+      "P22_before": 0.5047619047619049,
+      "P22_after": 0.5223647023493786,
+      "rank_one_return_change_formula_error": 2.1076890233118206e-16,
+      "bound_transition_reconstruction_error": 3.165870343657673e-15,
+      "encounter_generator_reconstruction_error": 9.325873406851315e-14,
+      "direct_integrated_moment_P_reconstruction_error": 3.4416913763379853e-15,
+      "a_reconstruction_error": 2.220446049250313e-16,
+      "d_reconstruction_error": 0.0
+    },
+    {
+      "n": 6,
+      "couplings": [
+        -1.0,
+        -0.6,
+        -0.2,
+        0.2,
+        0.6,
+        1.0
+      ],
+      "hidden_vector": [
+        0.06299407883487088,
+        -0.3149703941743557,
+        0.6299407883487119,
+        -0.6299407883487124,
+        0.31497039417435624,
+        -0.0629940788348709
+      ],
+      "parameters": {
+        "a": 0.8,
+        "d": 1.1,
+        "lambda": 1.3,
+        "delta": 0.2
+      },
+      "maximum_vandermonde_orthogonality_error": 5.967448757360216e-16,
+      "minimum_offdiagonal_rate": 0.13730158730158726,
+      "subthreshold_maximum_order": 9,
+      "subthreshold_moments_checked": 130,
+      "maximum_subthreshold_moment_difference": 4.163336342344337e-17,
+      "first_distinguishing_mixed_moment_order": 10,
+      "threshold_moment_difference": 2.430876312589647e-06,
+      "maximum_return_probability_change": 0.015912797867685124,
+      "P22_before": 0.484126984126984,
+      "P22_after": 0.48810518359390526,
+      "rank_one_return_change_formula_error": 1.48318857196017e-16,
+      "bound_transition_reconstruction_error": 5.005024172888284e-14,
+      "encounter_generator_reconstruction_error": 4.600764214046649e-13,
+      "direct_integrated_moment_P_reconstruction_error": 1.009886618774658e-13,
+      "a_reconstruction_error": 2.220446049250313e-16,
+      "d_reconstruction_error": 0.0
+    }
+  ]
+}

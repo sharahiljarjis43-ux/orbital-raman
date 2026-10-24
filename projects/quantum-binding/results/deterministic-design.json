@@ -1,0 +1,2772 @@
+{
+  "allocation": "Uniform within science (80k) and calibration (20k), no control optimization",
+  "assumed_bounds": {
+    "C": [
+      0.6,
+      0.94
+    ],
+    "Gamma": [
+      0.0,
+      0.1
+    ],
+    "a": [
+      0.5,
+      2.0
+    ],
+    "b": [
+      0.48,
+      0.52
+    ],
+    "d": [
+      0.5,
+      2.0
+    ],
+    "delta": [
+      -0.1,
+      0.1
+    ],
+    "gamma": [
+      0.8,
+      1.2
+    ],
+    "lam": [
+      0.5,
+      2.0
+    ]
+  },
+  "calibration_assumption": "Known deterministic detuning fields and binding-dependent tagged fields share the same gamma, offset, intrinsic decay and effective readout. These synthetic calibration experiments and bounds are assumed scenarios, not measured apparatus calibration.",
+  "calibration_rows": 34,
+  "calibration_shots": 20000,
+  "forward_model_sha256": "9ab3e055fdf9c8b4535537c022167a4af4f30de953ca748b564f7d48c3a4b925",
+  "hypothetical_truths": {
+    "central": {
+      "C": 0.9,
+      "Gamma": 0.03,
+      "a": 1.0,
+      "b": 0.5,
+      "d": 1.0,
+      "delta": 0.02,
+      "gamma": 1.0,
+      "lam": 1.0
+    },
+    "offcenter_rates": {
+      "C": 0.9,
+      "Gamma": 0.03,
+      "a": 0.7,
+      "b": 0.5,
+      "d": 1.4,
+      "delta": 0.02,
+      "gamma": 1.0,
+      "lam": 1.6
+    }
+  },
+  "max_nfev": 300,
+  "n_starts": 8,
+  "omitted_time": "T=0.25 is omitted; all retained individual segments >=0.05",
+  "parameter_order": [
+    "a",
+    "d",
+    "lam",
+    "gamma",
+    "delta",
+    "C",
+    "Gamma",
+    "b"
+  ],
+  "runtime": {
+    "numpy": "2.2.6",
+    "python": "3.10.5",
+    "scipy": "1.15.3"
+  },
+  "scenarios": {
+    "known_sensor_limit": {
+      "calibration": false,
+      "free_names": [
+        "a",
+        "d",
+        "lam"
+      ]
+    },
+    "science_only_free_sensor": {
+      "calibration": false,
+      "free_names": [
+        "a",
+        "d",
+        "lam",
+        "gamma",
+        "delta",
+        "C",
+        "Gamma",
+        "b"
+      ]
+    },
+    "synthetic_shared_calibration": {
+      "calibration": true,
+      "free_names": [
+        "a",
+        "d",
+        "lam",
+        "gamma",
+        "delta",
+        "C",
+        "Gamma",
+        "b"
+      ]
+    }
+  },
+  "science_rows": 180,
+  "scope": "Two predeclared truth points, both hypothesis directions. This is not a minimax or uniform guarantee over the nuisance set.",
+  "seed": 20261019,
+  "sensing_shots": 80000,
+  "settings": [
+    {
+      "T": 0.5,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T0.5/g0.1/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 0.5,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T0.5/g0.1/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 0.5,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T0.5/g0.5/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 0.5,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T0.5/g0.5/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 0.5,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T0.5/g1/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 0.5,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T0.5/g1/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 1.0,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T1/g0.1/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 1.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T1/g0.1/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 1.0,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T1/g0.5/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 1.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T1/g0.5/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 1.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T1/g1/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 1.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T1/g1/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 2.0,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T2/g0.1/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 2.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T2/g0.1/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 2.0,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T2/g0.5/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 2.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T2/g0.5/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 2.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T2/g1/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 2.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T2/g1/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 4.0,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T4/g0.1/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 4.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T4/g0.1/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 4.0,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T4/g0.5/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 4.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T4/g0.5/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 4.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T4/g1/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 4.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T4/g1/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 8.0,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T8/g0.1/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 8.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T8/g0.1/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 8.0,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T8/g0.5/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 8.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T8/g0.5/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 8.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T8/g1/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 8.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Ramsey/T8/g1/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 0.5,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T0.5/g0.1/x",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 0.5,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T0.5/g0.1/y",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 0.5,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T0.5/g0.5/x",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 0.5,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T0.5/g0.5/y",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 0.5,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T0.5/g1/x",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 0.5,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T0.5/g1/y",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 1.0,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T1/g0.1/x",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 1.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T1/g0.1/y",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 1.0,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T1/g0.5/x",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 1.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T1/g0.5/y",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 1.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T1/g1/x",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 1.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T1/g1/y",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 2.0,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T2/g0.1/x",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 2.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T2/g0.1/y",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 2.0,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T2/g0.5/x",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 2.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T2/g0.5/y",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 2.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T2/g1/x",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 2.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T2/g1/y",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 4.0,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T4/g0.1/x",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 4.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T4/g0.1/y",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 4.0,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T4/g0.5/x",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 4.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T4/g0.5/y",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 4.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T4/g1/x",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 4.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T4/g1/y",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 8.0,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T8/g0.1/x",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 8.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T8/g0.1/y",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 8.0,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T8/g0.5/x",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 8.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T8/g0.5/y",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 8.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T8/g1/x",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 8.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/Hahn/T8/g1/y",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 0.5,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T0.5/g0.1/x",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 0.5,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T0.5/g0.1/y",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 0.5,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T0.5/g0.5/x",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 0.5,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T0.5/g0.5/y",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 0.5,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T0.5/g1/x",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 0.5,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T0.5/g1/y",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 1.0,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T1/g0.1/x",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 1.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T1/g0.1/y",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 1.0,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T1/g0.5/x",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 1.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T1/g0.5/y",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 1.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T1/g1/x",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 1.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T1/g1/y",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 2.0,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T2/g0.1/x",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 2.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T2/g0.1/y",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 2.0,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T2/g0.5/x",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 2.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T2/g0.5/y",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 2.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T2/g1/x",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 2.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T2/g1/y",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 4.0,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T4/g0.1/x",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 4.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T4/g0.1/y",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 4.0,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T4/g0.5/x",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 4.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T4/g0.5/y",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 4.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T4/g1/x",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 4.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T4/g1/y",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 8.0,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T8/g0.1/x",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 8.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T8/g0.1/y",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 8.0,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T8/g0.5/x",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 8.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T8/g0.5/y",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 8.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T8/g1/x",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 8.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG2/T8/g1/y",
+      "pulse_fractions": [
+        0.25,
+        0.75
+      ],
+      "sequence": "CPMG2"
+    },
+    {
+      "T": 0.5,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T0.5/g0.1/x",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 0.5,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T0.5/g0.1/y",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 0.5,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T0.5/g0.5/x",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 0.5,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T0.5/g0.5/y",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 0.5,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T0.5/g1/x",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 0.5,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T0.5/g1/y",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 1.0,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T1/g0.1/x",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 1.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T1/g0.1/y",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 1.0,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T1/g0.5/x",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 1.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T1/g0.5/y",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 1.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T1/g1/x",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 1.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T1/g1/y",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 2.0,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T2/g0.1/x",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 2.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T2/g0.1/y",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 2.0,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T2/g0.5/x",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 2.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T2/g0.5/y",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 2.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T2/g1/x",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 2.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T2/g1/y",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 4.0,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T4/g0.1/x",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 4.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T4/g0.1/y",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 4.0,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T4/g0.5/x",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 4.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T4/g0.5/y",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 4.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T4/g1/x",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 4.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T4/g1/y",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 8.0,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T8/g0.1/x",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 8.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T8/g0.1/y",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 8.0,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T8/g0.5/x",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 8.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T8/g0.5/y",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 8.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T8/g1/x",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 8.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/CPMG4/T8/g1/y",
+      "pulse_fractions": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "sequence": "CPMG4"
+    },
+    {
+      "T": 0.5,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T0.5/g0.1/x",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 0.5,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T0.5/g0.1/y",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 0.5,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T0.5/g0.5/x",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 0.5,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T0.5/g0.5/y",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 0.5,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T0.5/g1/x",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 0.5,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T0.5/g1/y",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 1.0,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T1/g0.1/x",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 1.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T1/g0.1/y",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 1.0,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T1/g0.5/x",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 1.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T1/g0.5/y",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 1.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T1/g1/x",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 1.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T1/g1/y",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 2.0,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T2/g0.1/x",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 2.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T2/g0.1/y",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 2.0,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T2/g0.5/x",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 2.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T2/g0.5/y",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 2.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T2/g1/x",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 2.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T2/g1/y",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 4.0,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T4/g0.1/x",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 4.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T4/g0.1/y",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 4.0,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T4/g0.5/x",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 4.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T4/g0.5/y",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 4.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T4/g1/x",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 4.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T4/g1/y",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 8.0,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T8/g0.1/x",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 8.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T8/g0.1/y",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 8.0,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T8/g0.5/x",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 8.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T8/g0.5/y",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 8.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T8/g1/x",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 8.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_02_06/T8/g1/y",
+      "pulse_fractions": [
+        0.2,
+        0.6
+      ],
+      "sequence": "asym2_02_06"
+    },
+    {
+      "T": 0.5,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T0.5/g0.1/x",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 0.5,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T0.5/g0.1/y",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 0.5,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T0.5/g0.5/x",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 0.5,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T0.5/g0.5/y",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 0.5,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T0.5/g1/x",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 0.5,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T0.5/g1/y",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 1.0,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T1/g0.1/x",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 1.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T1/g0.1/y",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 1.0,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T1/g0.5/x",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 1.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T1/g0.5/y",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 1.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T1/g1/x",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 1.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T1/g1/y",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 2.0,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T2/g0.1/x",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 2.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T2/g0.1/y",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 2.0,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T2/g0.5/x",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 2.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T2/g0.5/y",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 2.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T2/g1/x",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 2.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T2/g1/y",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 4.0,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T4/g0.1/x",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 4.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T4/g0.1/y",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 4.0,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T4/g0.5/x",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 4.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T4/g0.5/y",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 4.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T4/g1/x",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 4.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T4/g1/y",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 8.0,
+      "alpha": 0.0,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T8/g0.1/x",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 8.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.1,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T8/g0.1/y",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 8.0,
+      "alpha": 0.0,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T8/g0.5/x",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 8.0,
+      "alpha": 1.5707963267948966,
+      "g": 0.5,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T8/g0.5/y",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 8.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T8/g1/x",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 8.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "science",
+      "known_f": 0.0,
+      "label": "science/asym2_03_08/T8/g1/y",
+      "pulse_fractions": [
+        0.3,
+        0.8
+      ],
+      "sequence": "asym2_03_08"
+    },
+    {
+      "T": 0.0,
+      "alpha": 0.0,
+      "g": 0.0,
+      "kind": "calibration",
+      "known_f": 0.0,
+      "label": "calibration/anchor/plus",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 0.0,
+      "alpha": 3.141592653589793,
+      "g": 0.0,
+      "kind": "calibration",
+      "known_f": 0.0,
+      "label": "calibration/anchor/minus",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 1.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": 0.0,
+      "label": "calibration/Ramsey/T1/f0/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 1.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": 0.0,
+      "label": "calibration/Ramsey/T1/f0/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 1.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": 1.0,
+      "label": "calibration/Ramsey/T1/f1/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 1.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": 1.0,
+      "label": "calibration/Ramsey/T1/f1/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 1.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": -1.0,
+      "label": "calibration/Ramsey/T1/f-1/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 1.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": -1.0,
+      "label": "calibration/Ramsey/T1/f-1/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 2.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": 0.0,
+      "label": "calibration/Ramsey/T2/f0/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 2.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": 0.0,
+      "label": "calibration/Ramsey/T2/f0/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 2.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": 1.0,
+      "label": "calibration/Ramsey/T2/f1/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 2.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": 1.0,
+      "label": "calibration/Ramsey/T2/f1/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 2.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": -1.0,
+      "label": "calibration/Ramsey/T2/f-1/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 2.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": -1.0,
+      "label": "calibration/Ramsey/T2/f-1/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 4.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": 0.0,
+      "label": "calibration/Ramsey/T4/f0/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 4.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": 0.0,
+      "label": "calibration/Ramsey/T4/f0/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 4.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": 1.0,
+      "label": "calibration/Ramsey/T4/f1/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 4.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": 1.0,
+      "label": "calibration/Ramsey/T4/f1/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 4.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": -1.0,
+      "label": "calibration/Ramsey/T4/f-1/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 4.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": -1.0,
+      "label": "calibration/Ramsey/T4/f-1/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 8.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": 0.0,
+      "label": "calibration/Ramsey/T8/f0/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 8.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": 0.0,
+      "label": "calibration/Ramsey/T8/f0/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 8.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": 1.0,
+      "label": "calibration/Ramsey/T8/f1/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 8.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": 1.0,
+      "label": "calibration/Ramsey/T8/f1/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 8.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": -1.0,
+      "label": "calibration/Ramsey/T8/f-1/x",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 8.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": -1.0,
+      "label": "calibration/Ramsey/T8/f-1/y",
+      "pulse_fractions": [],
+      "sequence": "Ramsey"
+    },
+    {
+      "T": 1.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": 0.0,
+      "label": "calibration/Hahn/T1/f0/x",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 1.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": 0.0,
+      "label": "calibration/Hahn/T1/f0/y",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 2.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": 0.0,
+      "label": "calibration/Hahn/T2/f0/x",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 2.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": 0.0,
+      "label": "calibration/Hahn/T2/f0/y",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 4.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": 0.0,
+      "label": "calibration/Hahn/T4/f0/x",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 4.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": 0.0,
+      "label": "calibration/Hahn/T4/f0/y",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 8.0,
+      "alpha": 0.0,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": 0.0,
+      "label": "calibration/Hahn/T8/f0/x",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    },
+    {
+      "T": 8.0,
+      "alpha": 1.5707963267948966,
+      "g": 1.0,
+      "kind": "calibration",
+      "known_f": 0.0,
+      "label": "calibration/Hahn/T8/f0/y",
+      "pulse_fractions": [
+        0.5
+      ],
+      "sequence": "Hahn"
+    }
+  ],
+  "status": "Frozen design before deterministic cross-model profiling",
+  "validation": {
+    "known_ramsey_alias": [
+      0.11480594151524241,
+      0.2570104554652235
+    ],
+    "known_ramsey_original": [
+      0.1259196331736515,
+      0.31128449128344826
+    ],
+    "random_parameters": 12,
+    "tolerance": 2e-10
+  }
+}

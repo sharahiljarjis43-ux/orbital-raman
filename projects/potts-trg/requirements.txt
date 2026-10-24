@@ -1,0 +1,2 @@
+# Recorded quick-check environment: Python 3.10.5.
+numpy==2.2.6

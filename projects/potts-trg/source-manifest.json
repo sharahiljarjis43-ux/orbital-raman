@@ -1,0 +1,52 @@
+{
+  "source_archive": "Yau/potts_kappa",
+  "source_import_commit": "613a00a",
+  "source_import_date": "2026-09-09",
+  "portfolio_date": "2026-10-24",
+  "files": [
+    {
+      "source_file": "exact.py",
+      "sha256": "38055197fb3741b9d8874c0da687fd418ef9cdbd4778d96fafb499e94cdda6e4"
+    },
+    {
+      "source_file": "selfdual.py",
+      "sha256": "b6e15fa2ac45564c5eecd268a1f20f4216e54069b41109f46ac151a2fc9543fe"
+    },
+    {
+      "source_file": "critline.py",
+      "sha256": "1cbb9ecf4457854e734b686a73ac188385917fbbc3753972758e112c590f464c"
+    },
+    {
+      "source_file": "run_kappa.py",
+      "sha256": "cb990a3cb43c1963d82c3faac3d67397eee4a2924c2097c51659d3982397ec30"
+    },
+    {
+      "source_file": "rc_tensor.py",
+      "sha256": "05bd1fd4f0060775c20c6016027dc2f41456b7af79d22eb56e2462070a67eaee"
+    },
+    {
+      "source_file": "trg_u1.py",
+      "sha256": "b4d205c3ae0f441a3daf8f5fdc14d58412405ee9bd8a5e9c592d233b1f6b3164"
+    },
+    {
+      "source_file": "dtrg.py",
+      "sha256": "e56e4cbba18d3e78bddb1cfef8c919697ee8c142ad5b46ff419a980f1b3ddf63"
+    },
+    {
+      "source_file": "logs/log_cl_sq_0.05.txt",
+      "sha256": "3d623d524f21409259364345e47b820033cadea18ccc8b2a45abb2d81c27d9ef"
+    },
+    {
+      "source_file": "logs/log_cl_sq_0.1.txt",
+      "sha256": "812c8263602b78e39d80b81e33bd6c948d266e1fcdeac7c1f72c1efbdd05989c"
+    },
+    {
+      "source_file": "logs/log_cl_tri_0.05.txt",
+      "sha256": "c169d9caf7482e5b9128dcd4a13548ced31c60456ad88f178cf03b4564d2215e"
+    },
+    {
+      "source_file": "logs/log_cl_tri_0.1.txt",
+      "sha256": "ad1eda9efdbf78356740cb5088efa14a17fd0640f533c2a698da8cbf2499c3f1"
+    }
+  ]
+}

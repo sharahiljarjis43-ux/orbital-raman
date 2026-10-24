@@ -4,7 +4,9 @@ ORBITAL RAMAN FEASIBILITY STUDY
 WITH REALISTIC SPACE ENVIRONMENT + EXTENDED ANALYSIS
 
 Includes:
-  - Surface incidence angle, shadow mapping, roughness, dust
+  - Surface roughness, dust, and a small monostatic self-occlusion mask on the
+    laser-excited signal (solar incidence + shadowing do NOT attenuate an
+    actively-illuminated signal; Rivkin corr.)
   - Cosmic ray noise
   - Monte Carlo uncertainty quantification (10,000 trials)
   - Quantum squeezing analysis (analytical + QuTiP verification)
@@ -61,22 +63,32 @@ def load_otes(filepath):
     print(f"    ✓ Temperature: {mean_T:.1f} K")
     return mean_T
 
-def load_tsis1(filepath):
+BENNU_HELIOCENTRIC_AU = 1.126
+
+
+def load_tsis1(filepath, wavelength_nm=248.0, heliocentric_au=BENNU_HELIOCENTRIC_AU):
+    """Solar spectral irradiance at `wavelength_nm`, scaled to Bennu's distance.
+
+    Deliberately raises rather than falling back to a hardcoded constant: a silent
+    default here previously masked a variable-name mismatch, so the archived file
+    was never read and every run used 0.015 W/m^2/nm regardless.
+    """
+    import netCDF4 as nc
     print(f"  Loading TSIS-1...")
+    ds = nc.Dataset(filepath)
     try:
-        import netCDF4 as nc
-        ds = nc.Dataset(filepath)
-        wl = ds.variables['Wavelength'][:]
-        ssi = ds.variables['SSI'][:]
-        if len(ssi.shape) > 1: ssi = np.nanmean(ssi, axis=0)
+        wl = np.asarray(ds.variables['wavelength'][:]).ravel()
+        ssi = np.asarray(ds.variables['irradiance_1au'][:])
+    finally:
         ds.close()
-        irr = float(ssi[np.argmin(np.abs(wl - 280))])
-        print(f"    ✓ Irradiance @ 280nm: {irr:.4f} W/m²/nm")
-        return irr
-    except Exception as e:
-        print(f"    TSIS-1 load failed: {e}")
-        print(f"    Using default 0.015 W/m²/nm")
-        return 0.015
+    if ssi.ndim > 1:
+        ssi = np.nanmean(ssi, axis=0)
+    ssi = np.asarray(ssi).ravel()
+    irr_1au = float(ssi[np.argmin(np.abs(wl - wavelength_nm))])
+    irr = irr_1au / heliocentric_au ** 2
+    print(f"    ✓ Irradiance @ {wavelength_nm:.0f}nm: {irr_1au:.4f} W/m²/nm at 1 AU "
+          f"-> {irr:.4f} at {heliocentric_au} AU")
+    return irr
 
 def make_synthetic(seed=42):
     rng = np.random.default_rng(seed)
@@ -92,64 +104,148 @@ def make_synthetic(seed=42):
 class SpaceEnvironment:
     """Simulates realistic space environment effects."""
     
-    def __init__(self, lat, lon, seed=42):
+    def __init__(self, lat, lon, seed=42, occlusion_frac=0.03):
         self.rng = np.random.default_rng(seed)
         self.n = len(lat)
         self.lat = lat
         self.lon = lon
-        
-        # Incidence angle - but Bennu rotates, so we see different faces
-        # Model as random distribution centered on 45° (average illumination)
+
+        # Solar incidence angle -- retained for the BACKGROUND term and for
+        # plotting only. It does NOT attenuate the laser-excited signal
+        # (Rivkin correction); see get_factor().
         base_inc = 45 + 25 * self.rng.standard_normal(self.n)
         self.incidence = np.clip(base_inc, 0, 85)
-        
+
         # Roughness factor (Bennu is rough but not catastrophically so)
         # Literature: ~10-30% signal reduction from roughness
         self.roughness = np.clip(0.8 + 0.1 * self.rng.standard_normal(self.n), 0.6, 1.0)
-        
-        # Shadow mask - only ~10% in deep shadow at any time
+
+        # Solar shadow mask (~10%) -- solar illumination state, relevant to the
+        # BACKGROUND only. It does NOT attenuate the signal (the laser lights
+        # solar-shadowed ground too).
         self.illuminated = self.rng.random(self.n) > 0.10
+
+        # Monostatic self-occlusion mask (Rivkin follow-up): a small residual
+        # signal-yield loss that survives active illumination -- facets whose line
+        # of sight to the near-nadir spacecraft is blocked by local relief. Source
+        # (laser) and detector are co-aligned, so it is a SINGLE term.
+        #
+        # EMPIRICALLY ANCHORED by line-of-sight mesh ray-trace
+        # (analysis/occlusion_raytrace.py), 375 m near-nadir. The 75 cm / 1.6 m
+        # GLOBAL shape gives 0% (metre-scale faces vs a ~0.4 m footprint ->
+        # occlusion is sub-resolution). The 5 cm boulder-resolving Nightingale DTM
+        # (OLA v20 PTM) gives a FEW PERCENT, but weighting-dependent: face-count
+        # ~1.6%, raw area-weighted ~8.9% -- of which ~5 pts are large INWARD faces
+        # (Poisson fill-in over unseen boulder undersides = reconstruction
+        # artifacts, not real surface); artifact-corrected ~3.9%. So the ray-trace
+        # confirms a few-percent loss centred near 3% and does NOT justify a precise
+        # point value. We keep 3% nominal with a 1-8% sensitivity band -- now
+        # empirically anchored, not assumed. Nightingale is one boulder-rich TAG
+        # site, so the bracket is site-specific. Conclusions are insensitive across
+        # 0-8%. Occluded facets return no signal.
+        self.occlusion_frac = float(occlusion_frac)
+        if not (0.0 <= self.occlusion_frac < 1.0):
+            raise ValueError(
+                f"occlusion_frac must be in [0, 1), got {occlusion_frac}")
+        self.visible = self.rng.random(self.n) > self.occlusion_frac
         
     def get_factor(self, mission_day=100):
-        """Combined environment factor (0-1)."""
-        # Incidence: cos(45°) ≈ 0.7 average
-        inc_factor = np.cos(np.radians(self.incidence))
-        
+        """Environment factor applied to the LASER-EXCITED Raman signal (0-1).
+
+        Rivkin (2026, pers. comm.) correction: the Raman signal is excited by
+        the instrument's OWN LASER, not by sunlight. Solar incidence-angle
+        cosine loss and solar shadowing therefore do NOT attenuate the signal
+        -- the laser can point nadir, and it illuminates a solar-shadowed
+        region just as well as a sunlit one. Only surface effects that are
+        independent of the illumination source remain: micro-roughness
+        scattering and dust accumulation.
+
+        One geometric term DOES survive active illumination: monostatic self-
+        occlusion (facets hidden from the spacecraft's own near-nadir line of
+        sight by overhangs / deep crevices). Because source and detector are
+        co-aligned it is a single, small mask (~3%), far below the removed solar
+        shadow; see __init__ (self.visible).
+
+        (Solar geometry -- incidence cosine and the solar shadow mask -- is NOT
+        part of this signal factor: cos(solar_incidence) and the solar shadow
+        that the pre-correction version applied to the signal are both removed.
+        Solar illumination still belongs in the BACKGROUND term N_solar, handled
+        separately in the noise model.)
+        """
         # Dust: ~1% loss per year = negligible for 100 days
         dust = 0.997  # ~0.3% loss at day 100
-        
-        # Combine: typical factor ~0.5-0.7 (not 0!)
-        # Shadow sets some to 0, but most are illuminated
-        factor = inc_factor * self.roughness * self.illuminated.astype(float) * dust
-        
-        # Floor at 0.1 for non-shadowed points (some signal always gets through)
-        factor = np.where(self.illuminated, np.maximum(factor, 0.1), 0)
-        
+
+        # Laser-independent surface effects (roughness x dust) x monostatic
+        # visibility. No solar cosine, no solar shadow mask.
+        factor = self.roughness * dust * self.visible.astype(float)
+
         return factor
     
     def summary(self):
         factors = self.get_factor()
-        print(f"  Environment: {100*self.illuminated.mean():.1f}% illuminated, "
-              f"mean factor {factors.mean():.2f}")
+        print(f"  Environment: {100*self.visible.mean():.1f}% visible (monostatic), "
+              f"{100*self.illuminated.mean():.1f}% sunlit; "
+              f"mean signal factor {factors.mean():.2f}")
 
 
 # =============================================================================
 # PHYSICS MODEL
 # =============================================================================
 
+# Collection bandwidth (nm), Bennu geometric albedo, and per-pulse gate entering
+# the solar background of Equation (3).
+DELTA_LAMBDA_NM = 0.5
+BENNU_ALBEDO = 0.044
+GATE_PER_PULSE_S = 20e-9
+
+# Raman backscatter coefficient for 1 wt% organic carbon at 532 nm (sr^-1). This
+# is the paper's HEADLINE value: the central estimate from the K_R bounding in
+# analysis/kr_anchor.py (plausible range 3e-13 to 3e-12; conservative outer bounds
+# 1e-13 to 1e-11). Running the pipeline reproduces the paper's central-K_R tables.
+# 1e-11 is the loose optimistic ceiling, not a default; set this to 1e-11 to
+# reproduce the optimistic-bound column, or 1e-13 for the pessimistic bound.
+KR_1PCT_532 = 1e-12
+
+
+def solar_background_photons(distance_m, aperture_m, integration_time_s, solar_irr,
+                             wavelength_nm=248, QE=0.30, rep_rate=20):
+    """Detected solar-scattered background photons (Equation 3).
+
+    The illuminated spot radiates its reflected flux into pi sr, of which the
+    telescope intercepts only Omega_tel. The background therefore couples through
+    the etendue A_spot * Omega_tel, which is invariant with range. Omitting that
+    solid angle overstates the background by ~1/Omega_fov (~1e6 at 375 m) and
+    would imply the telescope collects several percent of the reflected light,
+    against a geometric ceiling of Omega_tel/pi ~ 1.6e-7.
+    """
+    h, c = 6.626e-34, 3e8
+    E_photon = h * c / (wavelength_nm * 1e-9)
+    A_tel = np.pi * (aperture_m / 2) ** 2
+    Omega_tel = A_tel / (distance_m ** 2)
+    A_spot = np.pi * (distance_m * 0.5e-3) ** 2
+    gate = rep_rate * integration_time_s * GATE_PER_PULSE_S
+    radiance = solar_irr * DELTA_LAMBDA_NM * BENNU_ALBEDO / np.pi  # W m^-2 sr^-1
+    return radiance * A_spot * Omega_tel * gate * QE / E_photon
+
+
 def calculate_snr(distance_m, organic_pct, wavelength_nm=248,
                   pulse_energy_J=0.050, aperture_m=0.30, integration_time_s=10,
-                  temp_K=300, solar_irr=0.015, env_factor=1.0):
-    """Calculate SNR with optional environment factor."""
+                  temp_K=300, solar_irr=0.015, env_factor=1.0, rep_rate=20):
+    """Calculate SNR with optional environment factor.
+
+    rep_rate (Hz) defaults to the 20 Hz KrF baseline; pass 500 for the Yb:YLF
+    laser trade study (Section 2.6 / Table 3), where more pulses raise both signal
+    and per-pulse read noise.
+    """
     h, c = 6.626e-34, 3e8
-    
-    rep_rate, QE = 20, 0.30
+
+    QE = 0.30
     n_pulses = rep_rate * integration_time_s
     E_photon = h * c / (wavelength_nm * 1e-9)
     photons_per_pulse = pulse_energy_J / E_photon
     
-    # K_R from organics
-    K_R_1pct_532 = 1e-11
+    # K_R from organics (central estimate; see KR_1PCT_532)
+    K_R_1pct_532 = KR_1PCT_532
     lambda_factor = (532 / wavelength_nm) ** 4
     resonance = 10 if wavelength_nm < 260 else (5 if wavelength_nm < 300 else 1)
     K_R = K_R_1pct_532 * (organic_pct / 1.0) * lambda_factor * resonance * env_factor
@@ -163,8 +259,8 @@ def calculate_snr(distance_m, organic_pct, wavelength_nm=248,
     N_signal = (photons_per_pulse / spot_area) * K_R * solid_angle * spot_area * n_pulses * QE
     
     # Noise
-    gate = n_pulses * 20e-9
-    N_solar = solar_irr / 1.27 * 0.5 * A_tel * 0.044 * gate * QE / (h * c / 280e-9) * 0.1
+    N_solar = solar_background_photons(distance_m, aperture_m, integration_time_s,
+                                       solar_irr, wavelength_nm, QE, rep_rate)
     N_dark = 100 * np.exp((temp_K - 300) / 30) * integration_time_s
     N_read = 25 * n_pulses
     
@@ -204,7 +300,7 @@ def calculate_snr_full(distance_m, organic_pct, **kwargs):
     n_pulses = rep_rate * ti
     E_photon = h * c / (wl * 1e-9)
     ppp = pe / E_photon
-    K_R_1pct_532 = 1e-11
+    K_R_1pct_532 = KR_1PCT_532
     lf = (532 / wl) ** 4
     res = 10 if wl < 260 else (5 if wl < 300 else 1)
     K_R = K_R_1pct_532 * (organic_pct / 1.0) * lf * res * ef
@@ -212,8 +308,7 @@ def calculate_snr_full(distance_m, organic_pct, **kwargs):
     omega = A_tel / (distance_m ** 2)
     spot = np.pi * (distance_m * 0.5e-3) ** 2
     N_sig = (ppp / spot) * K_R * omega * spot * n_pulses * QE
-    gate = n_pulses * 20e-9
-    N_solar = si / 1.27 * 0.5 * A_tel * 0.044 * gate * QE / (h * c / 280e-9) * 0.1
+    N_solar = solar_background_photons(distance_m, ap, ti, si, wl, QE, rep_rate)
     N_dark = 100 * np.exp((tK - 300) / 30) * ti
     N_read = 25 * n_pulses
     N_bg = N_solar + N_dark + N_read
@@ -246,7 +341,15 @@ MC_RANGES = {
     'temp_K':             (280, 350),
     'solar_irr':          (0.010, 0.020),
     'organic_pct':        (1.0, 15.0),
-    'env_factor':         (0.3, 1.0),
+    # env_factor = roughness x dust ONLY (Rivkin correction: the laser-excited
+    # signal takes no solar cosine loss and no solar shadow penalty). Floor
+    # rises from 0.3 to ~0.6 because the solar terms that used to drag it down
+    # are gone. Solar geometry is handled in the background, not here.
+    # NB: monostatic self-occlusion is NOT sampled here -- it is a coverage /
+    # pointing-yield effect (an occluded facet returns nothing), so this MC gives
+    # P(SNR>=5) CONDITIONAL on a visible target. Unconditional pointing yield =
+    # visible_fraction (~0.97 at the 3% nominal occlusion) x P(SNR>=5).
+    'env_factor':         (0.6, 1.0),
 }
 
 
@@ -376,15 +479,26 @@ def fig7_squeezing():
         ax.plot(eta * 100, eff, lw=2, color=color, label=f'{sq_dB} dB ideal')
     
     if QUTIP:
-        N_fock = 40
+        # Independent check of Eq. (7): propagate a squeezed vacuum through an
+        # explicit two-mode beamsplitter of transmissivity eta, trace out the loss
+        # port, and measure the surviving quadrature variance. Nothing here assumes
+        # the analytic form, so agreement is a genuine cross-check.
+        #
+        # N_fock = 60: the squeezed-vacuum truncation error in var_in falls from
+        # 8.4% at N=40 to 0.2% at N=60 (exact value 0.5*10^(-sq_dB/10) = 0.05).
+        # Even cutoffs matter -- squeezed vacuum occupies only even Fock states.
+        N_fock = 60
         eta_test = [0.045, 0.10, 0.20, 0.30, 0.50, 0.70]
         qt_eff = []
+        r_param = 10 / (20 * np.log10(np.e))
+        sq_vac = (qt.squeeze(N_fock, r_param) * qt.basis(N_fock, 0)).unit()
+        a = qt.tensor(qt.destroy(N_fock), qt.qeye(N_fock))
+        b = qt.tensor(qt.qeye(N_fock), qt.destroy(N_fock))
+        x = (qt.destroy(N_fock) + qt.create(N_fock)) / np.sqrt(2)
         for e in eta_test:
-            r_param = 10 / (20 * np.log10(np.e))
-            psi = qt.squeeze(N_fock, r_param) * qt.basis(N_fock, 0); psi = psi.unit()
-            x = (qt.destroy(N_fock) + qt.create(N_fock)) / np.sqrt(2)
-            var_in = qt.expect(x * x, psi) - qt.expect(x, psi) ** 2
-            var_out = e * var_in + (1 - e) * 0.5
+            U_bs = ((np.arccos(np.sqrt(e))) * (a.dag() * b - a * b.dag())).expm()
+            rho_out = (U_bs * qt.tensor(sq_vac, qt.basis(N_fock, 0))).ptrace(0)
+            var_out = float((qt.expect(x * x, rho_out) - qt.expect(x, rho_out) ** 2).real)
             eff_dB_qt = -10 * np.log10(var_out / 0.5) if var_out > 0 else 0
             qt_eff.append(max(eff_dB_qt, 0))
         ax.plot([e * 100 for e in eta_test], qt_eff, 'ko', ms=6, alpha=0.7,
@@ -659,18 +773,24 @@ def fig5_bennu_realistic(ovirs_data, temp_K, solar_irr):
     ax1.set_title('Organic Distribution (OVIRS)')
     ax1.set_xlabel('Longitude (°)'); ax1.set_ylabel('Latitude (°)')
     
+    # Monostatic visibility mask (Rivkin correction): solar incidence no longer
+    # drives the signal, so the signal-input panel shows the one geometric loss
+    # that does -- facets occluded from the spacecraft's own line of sight.
     ax2 = fig.add_subplot(2, 3, 2)
-    sc = ax2.scatter(lon, lat, c=env.incidence, s=1, cmap='coolwarm', vmin=0, vmax=90)
-    plt.colorbar(sc, ax=ax2, label='Angle (°)')
+    vis = env.visible
+    ax2.scatter(lon[vis], lat[vis], c='#2ca02c', s=1, label=f'Visible ({100*vis.mean():.1f}%)')
+    ax2.scatter(lon[~vis], lat[~vis], c='#d62728', s=1,
+                label=f'Occluded ({100*(~vis).mean():.1f}%)')
     ax2.set_xlim([0, 360]); ax2.set_ylim([-90, 90])
-    ax2.set_title('Solar Incidence Angle')
+    ax2.set_title('Monostatic Visibility\n(occluded facets return no signal)')
     ax2.set_xlabel('Longitude (°)'); ax2.set_ylabel('Latitude (°)')
+    ax2.legend(loc='lower left', fontsize=7, markerscale=3)
     
     ax3 = fig.add_subplot(2, 3, 3)
     sc = ax3.scatter(lon, lat, c=env_factors, s=1, cmap='viridis', vmin=0, vmax=1)
     plt.colorbar(sc, ax=ax3, label='Factor')
     ax3.set_xlim([0, 360]); ax3.set_ylim([-90, 90])
-    ax3.set_title('Combined Environment Factor\n(incidence × roughness × shadow × dust)')
+    ax3.set_title('Signal Environment Factor\n(roughness × dust × monostatic visibility; solar excluded — Rivkin corr.)')
     ax3.set_xlabel('Longitude (°)'); ax3.set_ylabel('Latitude (°)')
     
     # Row 2: Results at 375m (where it works)

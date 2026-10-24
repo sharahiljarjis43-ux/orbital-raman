@@ -1,0 +1,27 @@
+{
+  "archive": "Connectivity_and_finite-cluster_assembly_in_three-patch_lattice_gases",
+  "source_revision": "2026-10-11",
+  "curated_package_date": "2026-10-24",
+  "sources": [
+    {
+      "archive_relative_path": "evidence/classification/family_classification.json",
+      "sha256": "13be36949c51427a40527ccb73aeb52feb597dff98331ca2d91ecbbb7aa33a98"
+    },
+    {
+      "archive_relative_path": "evidence/classification/screen_reproduction.json",
+      "sha256": "20c4f551d4db9e676e71c9966a7b903210f9d58b9a7167874954c78b59e001ab"
+    },
+    {
+      "archive_relative_path": "evidence/classification/publication_proof.md",
+      "sha256": "2dcc918ab6b553766f9d5ce1b7d7d75d46d8a7b45320a1725182eca8f11b628c"
+    },
+    {
+      "archive_relative_path": "source/verify_classification.py",
+      "sha256": "788c40378622a6d571373edc8485d6b79ea92e344d7717b8329e0ce1b93d884c"
+    },
+    {
+      "archive_relative_path": "source/plot_classification.py",
+      "sha256": "70767f09396367aa7e61492ad34fee2c395ccaa9f1a2d1c8f07f018797628e37"
+    }
+  ]
+}

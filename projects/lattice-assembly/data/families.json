@@ -1,0 +1,95 @@
+{
+  "scope": "Nonempty rotation-closed unions of the four three-patch orbits on the triangular lattice. Negative classifications rely on the analytical proof, not finite search.",
+  "families": [
+    {
+      "family": "A",
+      "mask": 1,
+      "pattern_count": 6,
+      "finite_saturated_cluster_exists": false
+    },
+    {
+      "family": "B",
+      "mask": 2,
+      "pattern_count": 6,
+      "finite_saturated_cluster_exists": false
+    },
+    {
+      "family": "AB",
+      "mask": 3,
+      "pattern_count": 12,
+      "finite_saturated_cluster_exists": true
+    },
+    {
+      "family": "C",
+      "mask": 4,
+      "pattern_count": 6,
+      "finite_saturated_cluster_exists": false
+    },
+    {
+      "family": "AC",
+      "mask": 5,
+      "pattern_count": 12,
+      "finite_saturated_cluster_exists": true
+    },
+    {
+      "family": "BC",
+      "mask": 6,
+      "pattern_count": 12,
+      "finite_saturated_cluster_exists": false
+    },
+    {
+      "family": "ABC",
+      "mask": 7,
+      "pattern_count": 18,
+      "finite_saturated_cluster_exists": true
+    },
+    {
+      "family": "D",
+      "mask": 8,
+      "pattern_count": 2,
+      "finite_saturated_cluster_exists": false
+    },
+    {
+      "family": "AD",
+      "mask": 9,
+      "pattern_count": 8,
+      "finite_saturated_cluster_exists": true
+    },
+    {
+      "family": "BD",
+      "mask": 10,
+      "pattern_count": 8,
+      "finite_saturated_cluster_exists": false
+    },
+    {
+      "family": "ABD",
+      "mask": 11,
+      "pattern_count": 14,
+      "finite_saturated_cluster_exists": true
+    },
+    {
+      "family": "CD",
+      "mask": 12,
+      "pattern_count": 8,
+      "finite_saturated_cluster_exists": false
+    },
+    {
+      "family": "ACD",
+      "mask": 13,
+      "pattern_count": 14,
+      "finite_saturated_cluster_exists": true
+    },
+    {
+      "family": "BCD",
+      "mask": 14,
+      "pattern_count": 14,
+      "finite_saturated_cluster_exists": false
+    },
+    {
+      "family": "ABCD",
+      "mask": 15,
+      "pattern_count": 20,
+      "finite_saturated_cluster_exists": true
+    }
+  ]
+}

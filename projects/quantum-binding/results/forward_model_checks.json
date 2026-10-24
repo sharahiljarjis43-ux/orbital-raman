@@ -1,0 +1,99 @@
+{
+  "status": "all checks passed",
+  "runtime": {
+    "python": "3.10.5",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3"
+  },
+  "forward_engine": {
+    "max_eig_vs_scipy_expm_error": 1.4543922553679174e-14,
+    "known_ramsey_errors": [
+      2.8609792490763984e-15,
+      1.899229894679118e-15
+    ],
+    "parameter_draws": 12,
+    "hypotheses": 2,
+    "settings_per_draw": 214
+  },
+  "historical_design_and_forward_model_hashes_match": true,
+  "covariance_grid_maximum_error": 4.996003610813204e-16,
+  "occupancy_only_coherence_grid_maximum_error": 7.4517388679806e-15,
+  "nonlinear_classical_moment_third_derivative_delta": -3.6190476190476204,
+  "nonlinear_classical_moment_delta_at_lag_one": -0.1002661472758394,
+  "saved_expected_kl_maximum_discrepancy": 0.0,
+  "expected_data_contrasts": [
+    {
+      "truth": "central",
+      "scenario": "known_sensor_limit",
+      "true_hypothesis": 0,
+      "recomputed_expected_kl": 1.7088319322694263
+    },
+    {
+      "truth": "central",
+      "scenario": "known_sensor_limit",
+      "true_hypothesis": 1,
+      "recomputed_expected_kl": 1.090419064469503
+    },
+    {
+      "truth": "central",
+      "scenario": "science_only_free_sensor",
+      "true_hypothesis": 0,
+      "recomputed_expected_kl": 1.598341691750448
+    },
+    {
+      "truth": "central",
+      "scenario": "science_only_free_sensor",
+      "true_hypothesis": 1,
+      "recomputed_expected_kl": 1.0169728678459946
+    },
+    {
+      "truth": "central",
+      "scenario": "synthetic_shared_calibration",
+      "true_hypothesis": 0,
+      "recomputed_expected_kl": 1.6568853731529476
+    },
+    {
+      "truth": "central",
+      "scenario": "synthetic_shared_calibration",
+      "true_hypothesis": 1,
+      "recomputed_expected_kl": 1.0648401153999594
+    },
+    {
+      "truth": "offcenter_rates",
+      "scenario": "known_sensor_limit",
+      "true_hypothesis": 0,
+      "recomputed_expected_kl": 0.4963117552074402
+    },
+    {
+      "truth": "offcenter_rates",
+      "scenario": "known_sensor_limit",
+      "true_hypothesis": 1,
+      "recomputed_expected_kl": 0.3756083381259135
+    },
+    {
+      "truth": "offcenter_rates",
+      "scenario": "science_only_free_sensor",
+      "true_hypothesis": 0,
+      "recomputed_expected_kl": 0.4433294049932248
+    },
+    {
+      "truth": "offcenter_rates",
+      "scenario": "science_only_free_sensor",
+      "true_hypothesis": 1,
+      "recomputed_expected_kl": 0.3498190250395357
+    },
+    {
+      "truth": "offcenter_rates",
+      "scenario": "synthetic_shared_calibration",
+      "true_hypothesis": 0,
+      "recomputed_expected_kl": 0.48126544381049075
+    },
+    {
+      "truth": "offcenter_rates",
+      "scenario": "synthetic_shared_calibration",
+      "true_hypothesis": 1,
+      "recomputed_expected_kl": 0.3657581098304493
+    }
+  ],
+  "scope": "Finite deterministic checks; no global optimizer, finite-shot power, physical or novelty claim"
+}

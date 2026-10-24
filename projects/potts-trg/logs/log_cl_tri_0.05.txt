@@ -1,0 +1,12 @@
+critical lines vs independently known critical points:
+  square      q=1: p_c=0.500000000000 ref=0.500000000000 diff=+0.0e+00
+  triangular  q=1: p_c=0.347296355334 ref=0.347296355334 diff=+5.6e-17
+  square      q=2: p_c=0.585786437627 ref=0.585786437627 diff=+2.2e-16
+  triangular  q=2: p_c=0.422649730810 ref=0.422649730810 diff=-5.6e-17
+
+critical-line kappa, triangular, delta=0.05, nsteps=24
+  D=  8  f(1)=-5.871e-04  kappa3=0.1121202  kappa5=0.1123236
+  D= 16  f(1)=-4.139e-04  kappa3=0.1113840  kappa5=0.1115579
+  D= 24  f(1)=-1.047e-04  kappa3=0.1116385  kappa5=0.1118422
+  D= 32  f(1)=-1.346e-04  kappa3=0.1117022  kappa5=0.1119052
+  D= 48  f(1)=-1.641e-04  kappa3=0.1116452  kappa5=0.1118490
