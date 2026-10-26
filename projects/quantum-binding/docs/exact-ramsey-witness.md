@@ -8,7 +8,7 @@ For the fixed three partner pair in the revised quantum binding proposal, the sc
 
 Thus every fixed `g ≠ 0` separates this pair for sufficiently small positive `T` in the ideal, exactly calibrated model. This proves fixed pair separation. It does not establish global identification of a return network, finite measurement performance, physical tau sensing or scientific novelty.
 
-The construction is retained from the October 2026 model notes. The exact derivative calculation extends their numerical sanity check. These extensions were generated during AI-assisted sessions; see [provenance](provenance.md). Independent mathematical review remains appropriate before a publication claim.
+The construction is retained from the October 2026 model notes. The exact derivative calculation extends their numerical sanity check. Development details are recorded in [provenance](provenance.md). Independent mathematical review remains appropriate before a publication claim.
 
 ## Model and conventions
 

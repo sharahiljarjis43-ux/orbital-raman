@@ -1,5 +1,7 @@
 # Finite-cluster assembly on a triangular lattice
 
+**Project owner and maintainer: Sharahil Jarjis.**
+
 An exact computational companion to a working study of three-patch lattice gases. The question is simple: **which allowed particle orientations can form a finite, connected cluster with every patch bonded?**
 
 There are 20 ways to select three of the triangular lattice's six nearest-neighbour directions. Rotation groups them into four orbits, called A, B, C and D. Their 15 nonempty unions form the model families studied here.
@@ -51,4 +53,4 @@ The exclusion argument has two parts. A supporting line forces any finite fully 
 
 This package isolates a model-specific mathematical result from a broader lattice-gas manuscript. It does not reproduce that manuscript's historical Monte Carlo or tensor-network campaigns, establish a percolation threshold, or demonstrate experimental material assembly. No new numerical campaign was run for this release.
 
-The proof has received internal checks, including AI-assisted review, but has not been independently refereed. Historical priority remains unresolved. The exact witness checks support the stated combinatorial examples; they do not by themselves establish originality. See [provenance](PROVENANCE.md).
+The proof has received internal checks and has not been independently refereed. Historical priority remains unresolved. The exact witness checks support the stated combinatorial examples; they do not by themselves establish originality. Source and tool-use details are in [provenance](PROVENANCE.md).

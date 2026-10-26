@@ -1,10 +1,12 @@
 # Quantum binding-memory model study
 
+**Project owner and maintainer: Sharahil Jarjis.**
+
 **A reproducible study of what scalar covariance can miss about hidden binding dynamics, and what higher-order observations can recover.**
 
 This project uses a small, reversible Markov model of binding and encounter states. Two different partner-return networks can have exactly the same ordinary covariance, yet different controlled qubit coherence. The package combines an exact example, mathematical identifiability notes, and a synthetic forward model with nuisance-parameter stress tests.
 
-**Status:** computational and mathematical exploration, updated October 24, 2026. No molecular or device measurements are included. AI-generated proof extensions and simulations are identified in [provenance](docs/provenance.md).
+**Status:** computational and mathematical exploration. No molecular or device measurements are included. Source and development details are recorded in [provenance](docs/provenance.md).
 
 ## Start here
 

@@ -1,6 +1,6 @@
 # Finite saturation of rotation-closed three-patch families
 
-This working proof accompanies the exact witness checker. It was developed and checked with AI assistance during the October 2026 manuscript revision. It has not been independently refereed; literature priority and globally minimum witness sizes are not claimed.
+This working proof accompanies the exact witness checker. Development details from the October 2026 manuscript revision are recorded in [provenance](../PROVENANCE.md). It has not been independently refereed; literature priority and globally minimum witness sizes are not claimed.
 
 The theorem concerns finite connected bonded components on one triangular lattice. It does not concern wrapping components on a finite torus.
 

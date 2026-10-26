@@ -1,5 +1,7 @@
 # Potts / random-cluster tensor-network prototype
 
+**Project owner and maintainer: Sharahil Jarjis.**
+
 **Status: numerical prototype with an exact square-lattice benchmark and incomplete finite-D convergence.**
 
 This project estimates the mean number of percolation clusters per lattice site using a real-q random-cluster loop tensor and U(1)-sector tensor renormalization. It compares a fixed-p finite difference, a finite difference along the critical line, and a fixed-isometry linear-response calculation.

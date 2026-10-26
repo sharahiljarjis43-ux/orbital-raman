@@ -1,5 +1,7 @@
 # Orbital Raman: instrument and observing feasibility
 
+**Project owner and maintainer: Sharahil Jarjis.**
+
 A research software project exploring the photon budget and spatial sampling requirements for Raman spectroscopy of carbonaceous asteroid surfaces, with Bennu as the motivating case.
 
 **Other current projects:** [research portfolio](RESEARCH_PORTFOLIO.md).
@@ -10,7 +12,8 @@ The repository combines a time-gated Raman count model, uncertainty studies, and
 
 - [Quick start and reproduction](docs/REPRODUCING.md): installation, a data-free example, tests, and optional mission-data workflows.
 - [Methods and limitations](docs/METHODS_AND_LIMITATIONS.md): what the calculations mean and the assumptions that need validation.
-- [Source and data provenance](docs/PROVENANCE.md): release source, included material, exclusions and AI assistance.
+- [Development and data notes](docs/PROVENANCE.md): source revision, data credits and tool use.
+- [Project attribution](AUTHORSHIP.md): ownership attribution and development-note references.
 
 ```bash
 python -m venv .venv
@@ -50,4 +53,4 @@ The instrument and mission model is available for inspection and self-contained 
 
 Earlier figures, manuscript drafts and interactive demos are retained in `archive/2026-04/` for history. They are not current validated results. Some previously published mission files remain under `Data/`; see its provenance notes before use.
 
-No software license is asserted by this packaging update. Third-party data and software retain their own terms; see [provenance](docs/PROVENANCE.md).
+Source credits and third-party data and software terms are recorded in [provenance](docs/PROVENANCE.md).

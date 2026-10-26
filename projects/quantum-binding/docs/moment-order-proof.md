@@ -1,6 +1,6 @@
 # Stationary moment order in a reversible binding model
 
-Exploratory AI-assisted derivation, October 22, 2026; numerical checks refreshed October 24. This note has been internally checked, but is not independently refereed or formally verified. Priority is unresolved. See [provenance](provenance.md) and [literature context](literature.md).
+Exploratory derivation, October 22, 2026; numerical checks refreshed October 24. This note has been internally checked, but is not independently refereed or formally verified. Priority is unresolved. See [provenance](provenance.md) and [literature context](literature.md).
 
 ## Statement and information definition
 

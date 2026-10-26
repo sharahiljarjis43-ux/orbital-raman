@@ -11,7 +11,7 @@ Updated October 24, 2026.
 
 ## Exploratory mathematical extension
 
-The [moment-order note](moment-order-proof.md) develops the worst-case `2n−2` threshold for the full hierarchy of exact stationary scalar moments with calibrated distinct tags. The upper argument reconstructs the generator; the lower argument constructs hidden-mode perturbations whose lower-degree moments coincide at all times. This derivation and its checks came from AI-assisted sessions. It has not been independently refereed, formally verified, or established as novel.
+The [moment-order note](moment-order-proof.md) develops the worst-case `2n−2` threshold for the full hierarchy of exact stationary scalar moments with calibrated distinct tags. The upper argument reconstructs the generator; the lower argument constructs hidden-mode perturbations whose lower-degree moments coincide at all times. Development details are recorded in [provenance](provenance.md). It has not been independently refereed, formally verified, or established as novel.
 
 "Moment order" is total scalar polynomial degree, including powers at a repeated observation time. It is not the number of distinct time points or the number of shots. Exact access to this hierarchy does not establish that the finite qubit library recovers it.
 

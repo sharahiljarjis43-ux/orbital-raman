@@ -24,7 +24,7 @@ Each project documents its own dependencies and verification commands. Saved num
 
 ## Research status and contributions
 
-These are working research materials, not claims of peer-reviewed publication. Project documentation records the scope and provenance of the selected code. AI assistance was used in parts of the analysis, code, checks, and documentation; the project notes distinguish those materials from experimental observations. See the project-specific provenance notes for the AI-generated components and the scope of the computational checks.
+**Project owner and maintainer: Sharahil Jarjis.** These are working research materials. Each project's development notes record source credits, tool assistance and verification scope. See [project attribution and tool use](AUTHORSHIP.md).
 
 The Raman package connects to separate laboratory work with meteorite spectroscopy. Unpublished laboratory measurements and third-party research drafts are outside this public collection. The other projects use mathematical models and computational examples.
 
@@ -38,4 +38,4 @@ The Raman package connects to separate laboratory work with meteorite spectrosco
 - [`projects/potts-trg/`](projects/potts-trg/README.md): exact benchmarks and the numerical prototype.
 - [`archive/2026-04/`](archive/2026-04/README.md): preserved earlier figures, demonstrations, and manuscript draft.
 
-**Updated:** October 24, 2026.
+**Updated:** October 26, 2026.

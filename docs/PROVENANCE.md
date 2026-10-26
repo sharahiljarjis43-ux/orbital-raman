@@ -6,11 +6,11 @@ The instrument and mission calculation source in this update is curated from loc
 
 Included source consists of `src_fixed.py`, the three analysis entry points, the `analysis` package, and their inherited tests. A small data-free example, environment record and explanatory documents were added for review. The artifact-existence test skips when its intentionally unbundled generated reports are absent.
 
-## AI assistance and authorship
+## Development tools
 
-The October 2026 repository audit, documentation, packaging and smoke-check wrapper were prepared with Codex assistance. The source snapshot also has an AI-assisted development history. Repository presentation and passing tests are not independent validation of the research. Scientific interpretation, attribution, authorship and claims remain the researcher's responsibility and should be reviewed before submission.
+Codex assisted the October repository documentation, packaging, checks and smoke-check wrapper. Earlier model development also used AI tools. The selected scientific calculation source was preserved unchanged; the verification record defines the checks performed.
 
-This update does not claim sole authorship of third-party scientific methods or collaborator software. It does not invent a license for material whose original terms have not been established.
+Project ownership and maintenance are attributed to Sharahil Jarjis; see [project attribution](../AUTHORSHIP.md). Third-party methods, data and software retain their source credits and applicable terms.
 
 ## Included and excluded material
 

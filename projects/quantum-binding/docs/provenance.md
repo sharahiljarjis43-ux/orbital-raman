@@ -1,8 +1,8 @@
-# Provenance and contribution boundaries
+# Source and development notes
 
 This public package was curated on October 24, 2026 from the existing quantum binding-memory research notes and their October 19–22 computational follow-ups. It contains synthetic model calculations, not experimental data.
 
-The original proposal and model choices precede this curation. The exact derivative extensions, moment-order arguments, numerical evaluations, and checking scripts were generated during AI-assisted sessions. Earlier proposal/model development and these assisted additions should be credited separately; independent scientific review remains pending.
+**Project owner and maintainer: Sharahil Jarjis.** The original proposal and model choices precede this curation. AI generated the later exact derivative extensions, moment-order arguments, numerical evaluations and checking scripts during the recorded research sessions. These development details describe tool use; see [project attribution](../../../AUTHORSHIP.md). Independent scientific review remains pending.
 
 | Included material | Source and curation |
 |---|---|
@@ -15,4 +15,4 @@ The original proposal and model choices precede this curation. The exact derivat
 
 Private correspondence, application or mentorship assessments, personal documents, downloaded articles, and environment folders are excluded. No external data are needed to run the included checks. The historical finite-shot optimization campaigns are not bundled or used as headline performance claims here.
 
-The numerical environment used for this verification is recorded in the result JSON files. Model time and coupling are dimensionless unless separately calibrated. AI-assisted derivations and finite checks remain subject to mathematical and scientific review; literature priority is unresolved.
+The numerical environment used for this verification is recorded in the result JSON files. Model time and coupling are dimensionless unless separately calibrated. Mathematical review and literature-priority assessment remain outstanding.

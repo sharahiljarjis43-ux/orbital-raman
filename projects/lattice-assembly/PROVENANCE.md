@@ -11,9 +11,9 @@ This is a curated computational companion to *Connectivity and finite-cluster as
 
 The [source manifest](data/source-manifest.json) records hashes of those source artifacts. The generated verification file separately hashes the packaged inputs. Original research files were preserved.
 
-## AI assistance and interpretation
+## Development tools
 
-The October classification theorem, supporting arguments and computational review were developed with AI assistance. The current README, package curation, checker refactoring and SVG script were also prepared with AI assistance. These additions should not be represented as work completed independently before the assisted sessions.
+AI tools assisted the October classification theorem and supporting arguments, computational review, and release documentation, checker refactoring and diagram. Project ownership and maintenance are attributed to Sharahil Jarjis; see [project attribution](../../AUTHORSHIP.md).
 
 The supplied manuscript records earlier student work separately from the October additions. Independent refereeing and literature-priority assessment remain outstanding.
 
